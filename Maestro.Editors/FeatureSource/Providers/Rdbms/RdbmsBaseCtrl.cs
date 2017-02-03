@@ -197,7 +197,7 @@ namespace Maestro.Editors.FeatureSource.Providers.Rdbms
 
         private static string[] ConvertToArray(OSGeo.MapGuide.ObjectModels.Common.DataStoreList dstore)
         {
-            List<string> values = new List<string>();
+            System.Collections.Generic.List<string> values = new System.Collections.Generic.List<string>();
             foreach (var ds in dstore.DataStore)
             {
                 values.Add(ds.Name);

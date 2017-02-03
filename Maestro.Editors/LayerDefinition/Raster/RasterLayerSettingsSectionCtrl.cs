@@ -117,7 +117,7 @@ namespace Maestro.Editors.LayerDefinition.Raster
 
         private void btnBrowseSchema_Click(object sender, EventArgs e)
         {
-            var list = new List<ClassDefinition>();
+            var list = new System.Collections.Generic.List<ClassDefinition>();
             foreach (var cls in _cachedDesc.AllClasses)
             {
                 bool hasRaster = false;
@@ -168,7 +168,7 @@ namespace Maestro.Editors.LayerDefinition.Raster
             }
 
             //See if we can auto-assign geometry
-            List<PropertyDefinition> geoms = new List<PropertyDefinition>();
+            System.Collections.Generic.List<PropertyDefinition> geoms = new System.Collections.Generic.List<PropertyDefinition>();
             foreach (var col in _selectedClass.Properties)
             {
                 if (col.Type == PropertyDefinitionType.Raster)
@@ -185,7 +185,7 @@ namespace Maestro.Editors.LayerDefinition.Raster
         {
             if (_selectedClass != null)
             {
-                List<PropertyDefinition> geoms = new List<PropertyDefinition>();
+                System.Collections.Generic.List<PropertyDefinition> geoms = new System.Collections.Generic.List<PropertyDefinition>();
                 foreach (var col in _selectedClass.Properties)
                 {
                     if (col.Type == PropertyDefinitionType.Raster)

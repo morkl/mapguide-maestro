@@ -23,6 +23,7 @@
 using Maestro.Editors.Common;
 using OSGeo.MapGuide.MaestroAPI.Services;
 using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -45,17 +46,9 @@ namespace Maestro.Editors.FeatureSource.Providers.Odbc.SubEditors
             _resSvc = service.CurrentConnection.ResourceService;
         }
 
-        public Control Content
-        {
-            get { return this; }
-        }
+        public Control Content => this;
 
-        private void OnConnectionChanged()
-        {
-            var handler = this.ConnectionChanged;
-            if (handler != null)
-                handler(this, EventArgs.Empty);
-        }
+        private void OnConnectionChanged() => ConnectionChanged?.Invoke(this, EventArgs.Empty);
 
         private static string InferDriver(string fileName, bool use64Bit)
         {
@@ -79,7 +72,7 @@ namespace Maestro.Editors.FeatureSource.Providers.Odbc.SubEditors
             return null;
         }
 
-        public NameValueCollection ConnectionProperties
+        public IDictionary<string, string> ConnectionProperties
         {
             get
             {
@@ -90,14 +83,14 @@ namespace Maestro.Editors.FeatureSource.Providers.Odbc.SubEditors
                 var cstr = value["ConnectionString"]; //NOXLATE
                 var builder = new System.Data.Common.DbConnectionStringBuilder();
                 builder.ConnectionString = cstr;
-                if (builder["Dbq"] != null) //NOXLATE
+                if (builder.ContainsKey("Dbq")) //NOXLATE
                     txtFilePath.Text = builder["Dbq"].ToString(); //NOXLATE
             }
         }
 
-        private NameValueCollection GetConnectionPropertiesInternal(bool use64Bit)
+        private IDictionary<string, string> GetConnectionPropertiesInternal(bool use64Bit)
         {
-            var values = new NameValueCollection();
+            var values = new Dictionary<string, string>();
             string path = txtFilePath.Text;
             if (string.IsNullOrEmpty(path))
                 return values;
@@ -116,10 +109,7 @@ namespace Maestro.Editors.FeatureSource.Providers.Odbc.SubEditors
             return values;
         }
 
-        public NameValueCollection Get64BitConnectionProperties()
-        {
-            return GetConnectionPropertiesInternal(true);
-        }
+        public IDictionary<string, string> Get64BitConnectionProperties() => GetConnectionPropertiesInternal(true);
 
         public event EventHandler ConnectionChanged;
 

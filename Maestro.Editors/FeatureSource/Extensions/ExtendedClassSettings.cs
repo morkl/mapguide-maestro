@@ -47,7 +47,7 @@ namespace Maestro.Editors.FeatureSource.Extensions
         {
             _fs = fs;
             _ext = ext;
-            var names = new List<string>(qualifiedClassNames);
+            var names = new System.Collections.Generic.List<string>(qualifiedClassNames);
             cmbBaseClass.DataSource = names;
             ext.PropertyChanged += WeakEventHandler.Wrap<PropertyChangedEventHandler>(OnExtensionPropertyChanged, (eh) => ext.PropertyChanged -= eh);
 

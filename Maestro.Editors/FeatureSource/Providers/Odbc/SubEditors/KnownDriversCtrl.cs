@@ -21,6 +21,7 @@
 #endregion Disclaimer / License
 
 using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -41,40 +42,29 @@ namespace Maestro.Editors.FeatureSource.Providers.Odbc.SubEditors
             lstDriver.DataSource = OdbcDriverMap.EnumerateDrivers();
         }
 
-        private void OnConnectionChanged()
-        {
-            var handler = this.ConnectionChanged;
-            if (handler != null)
-                handler(this, EventArgs.Empty);
-        }
+        private void OnConnectionChanged() => ConnectionChanged?.Invoke(this, EventArgs.Empty);
 
-        public NameValueCollection ConnectionProperties
+        public IDictionary<string, string> ConnectionProperties
         {
             get
             {
-                var values = new NameValueCollection();
+                var values = new Dictionary<string, string>();
                 if (this.SelectedDriver != null)
                     values["ConnectionString"] = this.SelectedDriver.OdbcConnectionString; //NOXLATE
                 return values;
             }
             set
             {
-                if (this.SelectedDriver != null && value["ConnectionString"] != null) //NOXLATE
+                if (this.SelectedDriver != null && value.ContainsKey("ConnectionString")) //NOXLATE
                     this.SelectedDriver.OdbcConnectionString = value["ConnectionString"]; //NOXLATE
             }
         }
 
-        public NameValueCollection Get64BitConnectionProperties()
-        {
-            return this.ConnectionProperties;
-        }
+        public IDictionary<string, string> Get64BitConnectionProperties() => ConnectionProperties;
 
         public event EventHandler ConnectionChanged;
 
-        public Control Content
-        {
-            get { return this; }
-        }
+        public Control Content => this;
 
         private OdbcDriverInfo _SelectedDriver;
 

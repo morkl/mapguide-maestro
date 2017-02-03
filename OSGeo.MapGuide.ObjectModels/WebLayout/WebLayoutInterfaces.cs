@@ -1199,7 +1199,7 @@ namespace OSGeo.MapGuide.ObjectModels.WebLayout
         /// Gets the layers.
         /// </summary>
         /// <value>The layers.</value>
-        BindingList<string> Layer { get; }
+        List<string> Layer { get; }
     }
 
     /// <summary>

@@ -174,11 +174,11 @@ namespace OSGeo.MapGuide.ObjectModels.WebLayout.v1_0_0
 
             IWebLayout wl = new WebLayoutType()
             {
-                CommandSet = new System.ComponentModel.BindingList<CommandType>(),
+                CommandSet = new List<CommandType>(),
                 ContextMenu = new ContextMenuType()
                 {
                     Visible = true,
-                    MenuItem = new System.ComponentModel.BindingList<UIItemType>()
+                    MenuItem = new List<UIItemType>()
                 },
                 InformationPane = new InformationPaneType()
                 {
@@ -226,7 +226,7 @@ namespace OSGeo.MapGuide.ObjectModels.WebLayout.v1_0_0
                             DisabledImageURL = "../stdicons/icon_home_disabled.gif"
                         },
                         //Task Pane menu buttons
-                        MenuButton = new System.ComponentModel.BindingList<UIItemType>(),
+                        MenuButton = new List<UIItemType>(),
                         Tasks = new TaskButtonType()
                         {
                             Name = "Tasks",
@@ -244,7 +244,7 @@ namespace OSGeo.MapGuide.ObjectModels.WebLayout.v1_0_0
                 ToolBar = new ToolBarType()
                 {
                     Visible = true,
-                    Button = new System.ComponentModel.BindingList<UIItemType>()
+                    Button = new List<UIItemType>()
                 },
                 ZoomControl = new ZoomControlType()
                 {
@@ -556,7 +556,7 @@ namespace OSGeo.MapGuide.ObjectModels.WebLayout.v1_0_0
         public bool IsCommandReferenced(string name, out WebLayoutRegion[] region)
         {
             region = new WebLayoutRegion[0];
-            List<WebLayoutRegion> regions = new List<WebLayoutRegion>();
+            System.Collections.Generic.List<WebLayoutRegion> regions = new System.Collections.Generic.List<WebLayoutRegion>();
             if (FindCommand(name, this.ContextMenu))
             {
                 regions.Add(WebLayoutRegion.ContextMenu);
@@ -593,8 +593,8 @@ namespace OSGeo.MapGuide.ObjectModels.WebLayout.v1_0_0
         private int RemoveInternal(string cmdName, IList<UIItemType> items)
         {
             int foundCount = 0;
-            List<IList<UIItemType>> subItemCheck = new List<IList<UIItemType>>();
-            List<UIItemType> found = new List<UIItemType>();
+            System.Collections.Generic.List<IList<UIItemType>> subItemCheck = new System.Collections.Generic.List<IList<UIItemType>>();
+            System.Collections.Generic.List<UIItemType> found = new System.Collections.Generic.List<UIItemType>();
             foreach (var item in items)
             {
                 if (item.Function == UIItemFunctionType.Command)
@@ -716,9 +716,9 @@ namespace OSGeo.MapGuide.ObjectModels.WebLayout.v1_0_0
                 ImageURL = "../stdicons/icon_invokeurl.gif", //NOXLATE
                 DisabledImageURL = "../stdicons/icon_invokeurl_disabled.gif", //NOXLATE
                 TargetViewer = TargetViewerType.All,
-                AdditionalParameter = new BindingList<ParameterPairType>(),
+                AdditionalParameter = new List<ParameterPairType>(),
                 URL = "",
-                LayerSet = new BindingList<string>()
+                LayerSet = new List<string>()
             };
         }
 
@@ -727,7 +727,7 @@ namespace OSGeo.MapGuide.ObjectModels.WebLayout.v1_0_0
             return new SearchCommandType()
             {
                 Name = GenerateUniqueName("SearchCommand"), //NOXLATE
-                ResultColumns = new System.ComponentModel.BindingList<ResultColumnType>(),
+                ResultColumns = new List<ResultColumnType>(),
                 Target = TargetType.TaskPane,
                 TargetViewer = TargetViewerType.All, //NOXLATE
                 DisabledImageURL = "../stdicons/icon_search_disabled.gif", //NOXLATE
@@ -792,7 +792,7 @@ namespace OSGeo.MapGuide.ObjectModels.WebLayout.v1_0_0
                 DisabledImageURL = disabledImageUrl,
                 ImageURL = imageUrl,
                 Label = label,
-                SubItem = new System.ComponentModel.BindingList<UIItemType>(),
+                SubItem = new List<UIItemType>(),
                 Tooltip = tooltip
             };
             flyout.AddItems(subItems);
@@ -813,7 +813,7 @@ namespace OSGeo.MapGuide.ObjectModels.WebLayout.v1_0_0
         {
             WebLayoutCustomCommandList list = new WebLayoutCustomCommandList();
 
-            List<CommandType> commands = new List<CommandType>();
+            System.Collections.Generic.List<CommandType> commands = new System.Collections.Generic.List<CommandType>();
 
             foreach (var name in cmdNames)
             {
@@ -832,7 +832,7 @@ namespace OSGeo.MapGuide.ObjectModels.WebLayout.v1_0_0
 
         public ImportedCommandResult[] ImportCustomCommands(string file)
         {
-            List<ImportedCommandResult> clashes = new List<ImportedCommandResult>();
+            System.Collections.Generic.List<ImportedCommandResult> clashes = new System.Collections.Generic.List<ImportedCommandResult>();
 
             using (var fs = File.OpenRead(file))
             {
@@ -1606,7 +1606,7 @@ namespace OSGeo.MapGuide.ObjectModels.WebLayout.v1_0_0
         }
 
         [XmlIgnore]
-        public BindingList<string> Layer
+        public List<string> Layer
         {
             get
             {

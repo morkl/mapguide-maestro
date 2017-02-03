@@ -53,7 +53,7 @@ namespace Maestro.Editors.LayerDefinition
                 }
             }
 
-            _props = new List<INameStringPair>(_vl.PropertyMapping);
+            _props = new System.Collections.Generic.List<INameStringPair>(_vl.PropertyMapping);
             PopulatePropertyList();
             _vl.PropertyChanged += WeakEventHandler.Wrap<PropertyChangedEventHandler>(OnVectorLayerPropertyChanged, (eh) => _vl.PropertyChanged -= eh);
         }
@@ -132,7 +132,7 @@ namespace Maestro.Editors.LayerDefinition
 
         private void RemoveInvalidMappings(OSGeo.MapGuide.MaestroAPI.Schema.ClassDefinition cls)
         {
-            var remove = new List<INameStringPair>();
+            var remove = new System.Collections.Generic.List<INameStringPair>();
             foreach (var mp in _vl.PropertyMapping)
             {
                 if (cls.FindProperty(mp.Name) == null)

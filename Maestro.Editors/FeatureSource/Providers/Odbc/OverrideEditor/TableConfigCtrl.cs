@@ -114,7 +114,7 @@ namespace Maestro.Editors.FeatureSource.Providers.Odbc.OverrideEditor
 
         private string[] GetPropertyNames()
         {
-            List<string> values = new List<string>();
+            System.Collections.Generic.List<string> values = new System.Collections.Generic.List<string>();
             foreach (var prop in _item.Class.Properties)
             {
                 if (prop.Type == PropertyDefinitionType.Data)
@@ -127,7 +127,7 @@ namespace Maestro.Editors.FeatureSource.Providers.Odbc.OverrideEditor
 
         private string[] GetNumericPropertyNames()
         {
-            List<string> values = new List<string>();
+            System.Collections.Generic.List<string> values = new System.Collections.Generic.List<string>();
             foreach (var prop in _item.Class.Properties)
             {
                 if (prop.Type == PropertyDefinitionType.Data)

@@ -294,7 +294,8 @@ namespace Maestro.Editors.Generic
 
             using (var ms = new MemoryStream())
             {
-                using (var uw = new Utf8XmlWriter(ms))
+                //using (var uw = new Utf8XmlWriter(ms))
+                using (var uw = XmlWriter.Create(ms))
                 {
                     if (!doc.ChildNodes.OfType<XmlDeclaration>().Any())
                         uw.WriteStartDocument();

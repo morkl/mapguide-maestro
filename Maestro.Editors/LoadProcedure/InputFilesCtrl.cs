@@ -98,7 +98,7 @@ namespace Maestro.Editors.LoadProcedure
         {
             if (lstInputFiles.SelectedItems.Count > 0)
             {
-                var files = new List<string>();
+                var files = new System.Collections.Generic.List<string>();
                 foreach (var obj in lstInputFiles.SelectedItems)
                 {
                     files.Add(obj.ToString());

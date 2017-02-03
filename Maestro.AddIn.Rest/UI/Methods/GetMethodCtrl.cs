@@ -109,7 +109,7 @@ namespace Maestro.AddIn.Rest.UI.Methods
                 opts.TransformTo = txtTransformTo.Text;
 
             if (chkProperties.Checked)
-                opts.Properties = new List<string>(lstProperties.SelectedItems.Cast<object>().Select(o => o.ToString()));
+                opts.Properties = new System.Collections.Generic.List<string>(lstProperties.SelectedItems.Cast<object>().Select(o => o.ToString()));
 
             if (chkComputedProperties.Checked)
             {

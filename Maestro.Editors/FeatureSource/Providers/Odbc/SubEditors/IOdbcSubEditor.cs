@@ -21,14 +21,14 @@
 #endregion Disclaimer / License
 
 using System;
-using System.Collections.Specialized;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Maestro.Editors.FeatureSource.Providers.Odbc.SubEditors
 {
     internal interface IOdbcSubEditor : IEditorBindable
     {
-        NameValueCollection ConnectionProperties { get; set; }
+        IDictionary<string, string> ConnectionProperties { get; set; }
 
         event EventHandler ConnectionChanged;
 
@@ -36,6 +36,6 @@ namespace Maestro.Editors.FeatureSource.Providers.Odbc.SubEditors
 
         Control Content { get; }
 
-        NameValueCollection Get64BitConnectionProperties();
+        IDictionary<string, string> Get64BitConnectionProperties();
     }
 }

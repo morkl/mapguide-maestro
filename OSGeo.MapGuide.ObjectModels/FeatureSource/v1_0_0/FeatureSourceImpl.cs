@@ -289,7 +289,7 @@ namespace OSGeo.MapGuide.ObjectModels.FeatureSource.v1_0_0
             if (sp != null)
             {
                 if (this.SupplementalSpatialContextInfo == null)
-                    this.SupplementalSpatialContextInfo = new System.ComponentModel.BindingList<SpatialContextType>();
+                    this.SupplementalSpatialContextInfo = new List<SpatialContextType>();
 
                 this.SupplementalSpatialContextInfo.Add(sp);
             }

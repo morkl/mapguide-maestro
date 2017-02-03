@@ -280,7 +280,7 @@ namespace OSGeo.MapGuide.MaestroAPI.Mapping
             this.MapDefinition = mdf.ResourceID;
             this.MapExtent = mdf.Extents.Clone();
             this.DataExtent = mdf.Extents.Clone();
-            this.BackgroundColor = mdf.BackgroundColor;
+            this.BackgroundColor = Utility.ToColor(mdf.BackgroundColor);
             this.CoordinateSystem = mdf.CoordinateSystem;
 
             //TODO: infer real mpu from coordinate system

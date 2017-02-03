@@ -78,7 +78,7 @@ namespace Maestro.Editors.FeatureSource.Extensions
             }
         }
 
-        private void UpdateJoinKeyList(IAttributeRelation rel) => grdJoinKeys.DataSource = new List<IRelateProperty>(rel.RelateProperty);
+        private void UpdateJoinKeyList(IAttributeRelation rel) => grdJoinKeys.DataSource = new System.Collections.Generic.List<IRelateProperty>(rel.RelateProperty);
 
         private void btnBrowse_Click(object sender, EventArgs e)
         {

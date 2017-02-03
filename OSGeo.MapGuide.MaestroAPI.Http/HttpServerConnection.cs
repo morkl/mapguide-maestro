@@ -83,11 +83,11 @@ namespace OSGeo.MapGuide.MaestroAPI
             m_reqBuilder = builder;
         }
 
-        public override NameValueCollection CloneParameters
+        public override IDictionary<string, string> CloneParameters
         {
             get
             {
-                var nvc = new NameValueCollection();
+                var nvc = new Dictionary<string, string>();
                 nvc[PARAM_URL] = this.BaseURL;
                 nvc[CommandLineArguments.Provider] = this.ProviderName;
                 nvc[CommandLineArguments.Session] = this.SessionID;

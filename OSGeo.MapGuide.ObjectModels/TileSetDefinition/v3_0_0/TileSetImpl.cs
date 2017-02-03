@@ -39,11 +39,11 @@ namespace OSGeo.MapGuide.ObjectModels.TileSetDefinition.v3_0_0
             {
                 TileStoreParameters = new TileStoreParametersType()
                 {
-                    Parameter = new System.ComponentModel.BindingList<NameValuePairType>(),
+                    Parameter = new List<NameValuePairType>(),
                     TileProvider = "Default" //NOXLATE
                 },
                 Extents = new Box2DType() { MaxX = 0.0, MaxY = 0.0, MinX = 0.0, MinY = 0.0 },
-                BaseMapLayerGroup = new System.ComponentModel.BindingList<BaseMapLayerGroupCommonType>()
+                BaseMapLayerGroup = new List<BaseMapLayerGroupCommonType>()
                 {
                     new BaseMapLayerGroupCommonType()
                     {
@@ -52,7 +52,7 @@ namespace OSGeo.MapGuide.ObjectModels.TileSetDefinition.v3_0_0
                         Visible = true,
                         ShowInLegend = true,
                         ExpandInLegend = true,
-                        BaseMapLayer = new System.ComponentModel.BindingList<BaseMapLayerType>()
+                        BaseMapLayer = new List<BaseMapLayerType>()
                     }
                 }
             };
@@ -225,7 +225,7 @@ namespace OSGeo.MapGuide.ObjectModels.TileSetDefinition.v3_0_0
             {
                 Name = name,
                 LegendLabel = name,
-                BaseMapLayer = new System.ComponentModel.BindingList<BaseMapLayerType>()
+                BaseMapLayer = new List<BaseMapLayerType>()
             };
             this.BaseMapLayerGroup.Add(grp);
             return grp;

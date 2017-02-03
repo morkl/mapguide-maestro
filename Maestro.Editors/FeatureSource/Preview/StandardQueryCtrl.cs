@@ -87,7 +87,7 @@ namespace Maestro.Editors.FeatureSource.Preview
 
         private string[] GetProperties()
         {
-            List<string> names = new List<string>();
+            System.Collections.Generic.List<string> names = new System.Collections.Generic.List<string>();
             foreach (var obj in chkProperties.CheckedItems)
             {
                 names.Add(obj.ToString());

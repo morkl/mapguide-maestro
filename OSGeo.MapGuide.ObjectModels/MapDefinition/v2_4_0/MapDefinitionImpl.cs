@@ -27,7 +27,6 @@ using OSGeo.MapGuide.ObjectModels.WatermarkDefinition;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
@@ -52,7 +51,7 @@ namespace OSGeo.MapGuide.ObjectModels.MapDefinition.v1_0_0
         }
 
         [XmlIgnore]
-        public Color BackgroundColor
+        public ColorInfo BackgroundColor
         {
             get
             {
@@ -88,11 +87,11 @@ namespace OSGeo.MapGuide.ObjectModels.MapDefinition.v1_0_0
                 Name = string.Empty,
                 CoordinateSystem = string.Empty,
                 Extents = new Box2DType() { MaxX = 0.0, MaxY = 0.0, MinX = 0.0, MinY = 0.0 },
-                BackgroundColor = Color.White,
-                MapLayer = new System.ComponentModel.BindingList<MapLayerType>(),
-                MapLayerGroup = new System.ComponentModel.BindingList<MapLayerGroupType>(),
+                BackgroundColor = ColorInfo.White,
+                MapLayer = new List<MapLayerType>(),
+                MapLayerGroup = new List<MapLayerGroupType>(),
 #if MDF_240
-                Watermarks = new BindingList<OSGeo.MapGuide.ObjectModels.WatermarkDefinition.v2_4_0.WatermarkType>()
+                Watermarks = new List<WatermarkDefinition.v2_4_0.WatermarkType>()
 #elif MDF_230
                 Watermarks = new BindingList<OSGeo.MapGuide.ObjectModels.WatermarkDefinition.v2_3_0.WatermarkType>()
 #endif
@@ -252,7 +251,7 @@ namespace OSGeo.MapGuide.ObjectModels.MapDefinition.v1_0_0
             Check.ArgumentNotEmpty(groupName, nameof(groupName));
             Check.ThatPreconditionIsMet(this.GetGroupByName(groupName) == null, $"<{nameof(groupName)}> does not already exist");
             if (this.MapLayerGroup == null)
-                this.MapLayerGroup = new System.ComponentModel.BindingList<MapLayerGroupType>();
+                this.MapLayerGroup = new List<MapLayerGroupType>();
 
             var group = new MapLayerGroupType()
             {
@@ -435,8 +434,8 @@ namespace OSGeo.MapGuide.ObjectModels.MapDefinition.v1_0_0
                 this.BaseMapDefinition = new MapDefinitionTypeBaseMapDefinition()
                 {
                     Parent = (IMapDefinition)this,
-                    BaseMapLayerGroup = new System.ComponentModel.BindingList<BaseMapLayerGroupCommonType>(),
-                    FiniteDisplayScale = new System.ComponentModel.BindingList<double>()
+                    BaseMapLayerGroup = new List<BaseMapLayerGroupCommonType>(),
+                    FiniteDisplayScale = new List<double>()
                 };
             }
         }
@@ -814,7 +813,7 @@ namespace OSGeo.MapGuide.ObjectModels.MapDefinition.v1_0_0
             {
                 Parent = this.Parent,
                 Name = name,
-                BaseMapLayer = new System.ComponentModel.BindingList<BaseMapLayerType>(),
+                BaseMapLayer = new List<BaseMapLayerType>(),
                 ExpandInLegend = true,
                 ShowInLegend = true,
                 LegendLabel = name,

@@ -69,7 +69,7 @@ namespace Maestro.Base.Commands.SiteExplorer
             int processed = 0;
             IServerConnection conn = (IServerConnection)args[0];
             string symbolLib = (string)args[1];
-            List<string> symbols = (List<string>)args[2];
+            System.Collections.Generic.List<string> symbols = (System.Collections.Generic.List<string>)args[2];
             string targetFolder = (string)args[3];
 
             ImageSymbolConverter conv = new ImageSymbolConverter(conn, symbolLib);
@@ -86,7 +86,7 @@ namespace Maestro.Base.Commands.SiteExplorer
         private void DoSymbolExtraction(IServerConnection conn, string symbolLib, IEnumerable<string> symbols, string targetFolder)
         {
             var wb = Workbench.Instance;
-            var list = new List<string>(symbols);
+            var list = new System.Collections.Generic.List<string>(symbols);
             var diag = new ProgressDialog();
             var worker = new ProgressDialog.DoBackgroundWork(SymbolExtractionWorker);
             diag.RunOperationAsync(wb, worker, conn, symbolLib, list, targetFolder);

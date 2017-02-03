@@ -164,7 +164,7 @@ namespace Maestro.Editors.LayerDefinition.Drawing
             }
             else
             {
-                var list = new List<string>();
+                var list = new System.Collections.Generic.List<string>();
                 foreach (var obj in chkListDwfLayers.CheckedItems)
                 {
                     list.Add(obj.ToString());

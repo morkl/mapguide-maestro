@@ -109,7 +109,7 @@ namespace Maestro.Editors.WebLayout.Commands
             }
 
             var mdf = (IMapDefinition)_edsvc.CurrentConnection.ResourceService.GetResource(wl.Map.ResourceId);
-            List<string> layers = new List<string>();
+            System.Collections.Generic.List<string> layers = new System.Collections.Generic.List<string>();
             foreach (var lyr in mdf.MapLayer)
             {
                 layers.Add(lyr.Name);

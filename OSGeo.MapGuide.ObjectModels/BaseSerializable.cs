@@ -20,7 +20,6 @@
 
 #endregion Disclaimer / License
 
-using System.Drawing;
 using System.Xml.Serialization;
 
 namespace OSGeo.MapGuide.ObjectModels
@@ -53,7 +52,7 @@ namespace OSGeo.MapGuide.ObjectModels
         /// <param name="color"></param>
         /// <param name="bIncludeAlpha"></param>
         /// <returns></returns>
-        protected string SerializeHTMLColor(Color color, bool bIncludeAlpha)
+        protected string SerializeHTMLColor(ColorInfo color, bool bIncludeAlpha)
         {
             return Utils.SerializeHTMLColor(color, bIncludeAlpha);
         }
@@ -63,7 +62,7 @@ namespace OSGeo.MapGuide.ObjectModels
         /// </summary>
         /// <param name="strColor"></param>
         /// <returns></returns>
-        protected Color ParseHTMLColor(string strColor)
+        protected ColorInfo ParseHTMLColor(string strColor)
         {
             return Utils.ParseHTMLColor(strColor);
         }

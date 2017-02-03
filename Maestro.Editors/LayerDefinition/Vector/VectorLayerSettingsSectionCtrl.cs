@@ -85,7 +85,7 @@ namespace Maestro.Editors.LayerDefinition.Vector
                     string geometry = txtGeometry.Text;
                     BusyWaitDialog.Run(null, () =>
                     {
-                        var errors = new List<string>();
+                        var errors = new System.Collections.Generic.List<string>();
                         if (!_edsvc.CurrentConnection.ResourceService.ResourceExists(_vl.ResourceId))
                         {
                             errors.Add(Strings.LayerEditorFeatureSourceNotFound);
@@ -127,7 +127,7 @@ namespace Maestro.Editors.LayerDefinition.Vector
                         }
                         else
                         {
-                            var list = (List<string>)result;
+                            var list = (System.Collections.Generic.List<string>)result;
                             foreach (var err in list)
                             {
                                 if (err == Strings.LayerEditorGeometryNotFound)
@@ -414,7 +414,7 @@ namespace Maestro.Editors.LayerDefinition.Vector
             }
 
             //See if we can auto-assign geometry
-            List<PropertyDefinition> geoms = new List<PropertyDefinition>();
+            System.Collections.Generic.List<PropertyDefinition> geoms = new System.Collections.Generic.List<PropertyDefinition>();
             foreach (var col in _selectedClass.Properties)
             {
                 if (col.Type == PropertyDefinitionType.Geometry)
@@ -432,7 +432,7 @@ namespace Maestro.Editors.LayerDefinition.Vector
         {
             if (_selectedClass != null)
             {
-                List<PropertyDefinition> geoms = new List<PropertyDefinition>();
+                System.Collections.Generic.List<PropertyDefinition> geoms = new System.Collections.Generic.List<PropertyDefinition>();
                 foreach (var col in _selectedClass.Properties)
                 {
                     if (col.Type == PropertyDefinitionType.Geometry)

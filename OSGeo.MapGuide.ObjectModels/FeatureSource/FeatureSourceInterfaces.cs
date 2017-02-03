@@ -359,10 +359,10 @@ namespace OSGeo.MapGuide.ObjectModels.FeatureSource
         /// </summary>
         /// <param name="fs"></param>
         /// <returns></returns>
-        public static NameValueCollection GetConnectionProperties(this IFeatureSource fs)
+        public static IDictionary<string, string> GetConnectionProperties(this IFeatureSource fs)
         {
             Check.ArgumentNotNull(fs, nameof(fs));
-            var values = new NameValueCollection();
+            var values = new Dictionary<string, string>();
             foreach (string name in fs.ConnectionPropertyNames)
             {
                 values[name] = fs.GetConnectionProperty(name);
@@ -375,18 +375,16 @@ namespace OSGeo.MapGuide.ObjectModels.FeatureSource
         /// </summary>
         /// <param name="fs"></param>
         /// <param name="values"></param>
-        public static void ApplyConnectionProperties(this IFeatureSource fs, NameValueCollection values)
+        public static void ApplyConnectionProperties(this IFeatureSource fs, IDictionary<string, string> values)
         {
             Check.ArgumentNotNull(fs, nameof(fs));
             Check.ArgumentNotNull(values, nameof(values));
 
             fs.ClearConnectionProperties();
 
-            foreach (string name in values.Keys)
+            foreach (var kvp in values)
             {
-                string value = values[name];
-
-                fs.SetConnectionProperty(name, value);
+                fs.SetConnectionProperty(kvp.Key, kvp.Value);
             }
         }
 

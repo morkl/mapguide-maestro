@@ -117,7 +117,7 @@ namespace Maestro.Base.Editor
                 return;
             }
 
-            List<string> affectedMapDefinitions = new List<string>();
+            System.Collections.Generic.List<string> affectedMapDefinitions = new System.Collections.Generic.List<string>();
             var resSvc = _edsvc.CurrentConnection.ResourceService;
             var refs = resSvc.EnumerateResourceReferences(_edsvc.ResourceID);
             foreach (var r in refs.ResourceId)

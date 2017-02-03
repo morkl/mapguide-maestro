@@ -333,8 +333,8 @@ namespace Maestro.Editors.LayerDefinition.Vector.GridEditor
 
         private void GenerateStylePreviewsForVisibleRows(bool bOnlyForNewlyVisibleRows)
         {
-            List<DataGridViewRow> visibleRows = new List<DataGridViewRow>(GetVisibleRuleRows());
-            List<RuleModel> visibleRules = new List<RuleModel>();
+            System.Collections.Generic.List<DataGridViewRow> visibleRows = new System.Collections.Generic.List<DataGridViewRow>(GetVisibleRuleRows());
+            System.Collections.Generic.List<RuleModel> visibleRules = new System.Collections.Generic.List<RuleModel>();
             foreach (var row in visibleRows)
             {
                 RuleModel rule = (RuleModel)row.DataBoundItem;
@@ -636,7 +636,7 @@ namespace Maestro.Editors.LayerDefinition.Vector.GridEditor
                 var lineSym = lr.GetSymbolizationStyle();
                 var strokes = lineSym.Strokes;
                 m_origLine = strokes;
-                m_editLine = (strokes == null) ? new List<IStroke>() : LayerElementCloningUtil.CloneStrokes(strokes);
+                m_editLine = (strokes == null) ? new System.Collections.Generic.List<IStroke>() : LayerElementCloningUtil.CloneStrokes(strokes);
 
                 var lfse = new LineFeatureStyleEditor(_edSvc, clsDef, vl.ResourceId, _editedLayer, prev);
                 uc = lfse;
@@ -811,7 +811,7 @@ namespace Maestro.Editors.LayerDefinition.Vector.GridEditor
             if (grdRules.Rows.Count == 1)
                 return;
 
-            List<RuleModel> remove = new List<RuleModel>();
+            System.Collections.Generic.List<RuleModel> remove = new System.Collections.Generic.List<RuleModel>();
             foreach (DataGridViewRow row in grdRules.SelectedRows)
                 remove.Add((RuleModel)row.DataBoundItem);
 

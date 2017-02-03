@@ -150,7 +150,7 @@ namespace Maestro.Editors.Fusion
                         }
                         else if (_flexLayout.MapSet.MapGroupCount > 2)
                         {
-                            List<string> mapGroupIds = new List<string>();
+                            System.Collections.Generic.List<string> mapGroupIds = new System.Collections.Generic.List<string>();
                             for (int i = 0; i < _flexLayout.MapSet.MapGroupCount; i++)
                             {
                                 mapGroupIds.Add(_flexLayout.MapSet.GetGroupAt(i).id);

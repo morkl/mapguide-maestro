@@ -83,7 +83,7 @@ namespace OSGeo.MapGuide.ObjectModels.ApplicationDefinition.v1_0_0
             {
                 Function = UiItemFunctionType.Flyout,
                 Label = label,
-                Item = new System.ComponentModel.BindingList<UiItemType>()
+                Item = new List<UiItemType>()
             };
         }
 
@@ -92,7 +92,7 @@ namespace OSGeo.MapGuide.ObjectModels.ApplicationDefinition.v1_0_0
             var map = new MapGroupType()
             {
                 id = id,
-                Map = new System.ComponentModel.BindingList<MapType>()
+                Map = new List<MapType>()
                 {
                     new MapType()
                     {
@@ -218,7 +218,7 @@ namespace OSGeo.MapGuide.ObjectModels.ApplicationDefinition.v1_0_0
                 };
             }
 
-            NameValueCollection extProperties = new NameValueCollection();
+            var extProperties = new Dictionary<string, string>();
 
             foreach (var wp in widgetInfo.Parameters)
             {
@@ -250,7 +250,7 @@ namespace OSGeo.MapGuide.ObjectModels.ApplicationDefinition.v1_0_0
             {
                 Name = name,
                 Type = containerInfo.Type,
-                Item = new System.ComponentModel.BindingList<UiItemType>(),
+                Item = new List<UiItemType>(),
                 Extension = new CustomContentType() { Any = new XmlElement[0] }
             };
         }
@@ -344,8 +344,8 @@ namespace OSGeo.MapGuide.ObjectModels.ApplicationDefinition.v1_0_0
         {
             return new WidgetSetType()
             {
-                Widget = new System.ComponentModel.BindingList<WidgetType>(),
-                Container = new System.ComponentModel.BindingList<ContainerType>(),
+                Widget = new List<WidgetType>(),
+                Container = new List<ContainerType>(),
                 MapWidget = (MapWidgetType)mapWidget
             };
         }

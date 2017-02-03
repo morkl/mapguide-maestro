@@ -721,7 +721,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition.v1_0_0
         {
             return new GridColorStyleType()
             {
-                ColorRule = new System.ComponentModel.BindingList<GridColorRuleType>(),
+                ColorRule = new List<GridColorRuleType>(),
                 HillShade = new HillShadeType()
             };
         }

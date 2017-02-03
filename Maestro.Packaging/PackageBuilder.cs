@@ -456,7 +456,7 @@ namespace Maestro.Packaging
             ResourcePackageManifest manifest = new ResourcePackageManifest();
             manifest.Description = "MapGuide Package created with Maestro"; //NOXLATE
             manifest.Operations = new ResourcePackageManifestOperations();
-            manifest.Operations.Operation = new System.ComponentModel.BindingList<ResourcePackageManifestOperationsOperation>();
+            manifest.Operations.Operation = new List<ResourcePackageManifestOperationsOperation>();
 
             var allowed = new List<string>();
             foreach (var rt in allowedExtensions)
@@ -600,7 +600,7 @@ namespace Maestro.Packaging
             op.Name = "SETRESOURCEDATA"; //NOXLATE
             op.Version = "1.0.0"; //NOXLATE
             op.Parameters = new ResourcePackageManifestOperationsOperationParameters();
-            op.Parameters.Parameter = new System.ComponentModel.BindingList<ResourcePackageManifestOperationsOperationParametersParameter>();
+            op.Parameters.Parameter = new List<ResourcePackageManifestOperationsOperationParametersParameter>();
 
             ResourcePackageManifestOperationsOperationParametersParameter param = new ResourcePackageManifestOperationsOperationParametersParameter();
 
@@ -653,7 +653,7 @@ namespace Maestro.Packaging
                 delop.Name = "DELETERESOURCE"; //NOXLATE
                 delop.Version = "1.0.0"; //NOXLATE
                 delop.Parameters = new ResourcePackageManifestOperationsOperationParameters();
-                delop.Parameters.Parameter = new System.ComponentModel.BindingList<ResourcePackageManifestOperationsOperationParametersParameter>();
+                delop.Parameters.Parameter = new List<ResourcePackageManifestOperationsOperationParametersParameter>();
 
                 ResourcePackageManifestOperationsOperationParametersParameter delparam = new ResourcePackageManifestOperationsOperationParametersParameter();
 
@@ -667,7 +667,7 @@ namespace Maestro.Packaging
             op.Name = "SETRESOURCE"; //NOXLATE
             op.Version = "1.0.0"; //NOXLATE
             op.Parameters = new ResourcePackageManifestOperationsOperationParameters();
-            op.Parameters.Parameter = new System.ComponentModel.BindingList<ResourcePackageManifestOperationsOperationParametersParameter>();
+            op.Parameters.Parameter = new List<ResourcePackageManifestOperationsOperationParametersParameter>();
 
             ResourcePackageManifestOperationsOperationParametersParameter param = new ResourcePackageManifestOperationsOperationParametersParameter();
 
@@ -715,7 +715,7 @@ namespace Maestro.Packaging
                 delop.Name = "DELETERESOURCE"; //NOXLATE
                 delop.Version = "1.0.0"; //NOXLATE
                 delop.Parameters = new ResourcePackageManifestOperationsOperationParameters();
-                delop.Parameters.Parameter = new System.ComponentModel.BindingList<ResourcePackageManifestOperationsOperationParametersParameter>();
+                delop.Parameters.Parameter = new List<ResourcePackageManifestOperationsOperationParametersParameter>();
 
                 ResourcePackageManifestOperationsOperationParametersParameter delparam = new ResourcePackageManifestOperationsOperationParametersParameter();
 
@@ -732,7 +732,7 @@ namespace Maestro.Packaging
                 op.Name = "SETRESOURCE"; //NOXLATE
             op.Version = "1.0.0"; //NOXLATE
             op.Parameters = new ResourcePackageManifestOperationsOperationParameters();
-            op.Parameters.Parameter = new System.ComponentModel.BindingList<ResourcePackageManifestOperationsOperationParametersParameter>();
+            op.Parameters.Parameter = new List<ResourcePackageManifestOperationsOperationParametersParameter>();
 
             ResourcePackageManifestOperationsOperationParametersParameter param = new ResourcePackageManifestOperationsOperationParametersParameter();
 
@@ -1067,7 +1067,7 @@ namespace Maestro.Packaging
                 ResourcePackageManifest manifest = new ResourcePackageManifest();
                 manifest.Description = "MapGuide Package created by Maestro"; //NOXLATE
                 manifest.Operations = new ResourcePackageManifestOperations();
-                manifest.Operations.Operation = new System.ComponentModel.BindingList<ResourcePackageManifestOperationsOperation>();
+                manifest.Operations.Operation = new List<ResourcePackageManifestOperationsOperation>();
 
                 foreach (ResourceItem ri in items)
                 {

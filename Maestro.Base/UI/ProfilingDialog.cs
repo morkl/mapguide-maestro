@@ -84,7 +84,7 @@ namespace Maestro.Base.UI
 
         private static void SetTempLayer(IMapDefinition mdf, string resourceId)
         {
-            var layers = new List<IMapLayer>(mdf.MapLayer);
+            var layers = new System.Collections.Generic.List<IMapLayer>(mdf.MapLayer);
             for (int i = 0; i < layers.Count; i++)
             {
                 mdf.RemoveLayer(layers[i]);
@@ -173,7 +173,7 @@ namespace Maestro.Base.UI
                     {
                         IVectorLayerDefinition vlx = lx.SubLayer as IVectorLayerDefinition;
                         //VectorScaleRangeTypeCollection ranges = vlx.VectorScaleRange;
-                        List<IVectorScaleRange> ranges = new List<IVectorScaleRange>(vlx.VectorScaleRange);
+                        System.Collections.Generic.List<IVectorScaleRange> ranges = new System.Collections.Generic.List<IVectorScaleRange>(vlx.VectorScaleRange);
                         foreach (var vsr in ranges)
                         {
                             if (backgroundWorker.CancellationPending)

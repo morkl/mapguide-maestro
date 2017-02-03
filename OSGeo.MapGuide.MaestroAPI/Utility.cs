@@ -53,6 +53,20 @@ namespace OSGeo.MapGuide.MaestroAPI
     public static class Utility
     {
         /// <summary>
+        /// Converts a <see cref="Color"/> instance to a <see cref="ColorInfo"/>
+        /// </summary>
+        /// <param name="c">The color</param>
+        /// <returns></returns>
+        public static ColorInfo FromColor(Color c) => ColorInfo.FromArgb(c.A, c.R, c.G, c.B);
+
+        /// <summary>
+        /// Converts a <see cref="ColorInfo"/> instance to a <see cref="Color"/>
+        /// </summary>
+        /// <param name="c">The color</param>
+        /// <returns></returns>
+        public static Color ToColor(ColorInfo c) => Color.FromArgb(c.A, c.R, c.G, c.B);
+
+        /// <summary>
         /// Returns true if this value is zero for all intents and purposes
         /// </summary>
         /// <param name="val"></param>
@@ -114,16 +128,16 @@ namespace OSGeo.MapGuide.MaestroAPI
         /// </summary>
         /// <param name="values"></param>
         /// <returns></returns>
-        public static string ToConnectionString(NameValueCollection values)
+        public static string ToConnectionString(IDictionary<string, string> values)
         {
             List<string> tokens = new List<string>();
 
-            foreach (string name in values.Keys)
+            foreach (var kvp in values)
             {
-                string value = values[name];
+                string value = kvp.Value;
                 if (value.Contains(";")) //NOXLATE
                     value = "\"" + value + "\""; //NOXLATE
-                tokens.Add(name + "=" + value); //NOXLATE
+                tokens.Add($"{kvp.Key}={value}"); //NOXLATE
             }
 
             return string.Join(";", tokens.ToArray()); //NOXLATE
@@ -564,7 +578,8 @@ namespace OSGeo.MapGuide.MaestroAPI
         {
             using (var ms = new MemoryStream())
             {
-                using (var xw = new Utf8XmlWriter(ms))
+                //using (var xw = new Utf8XmlWriter(ms))
+                using (var xw = XmlWriter.Create(ms))
                 {
                     serializer.Serialize(xw, o);
                     using (var ms2 = RemoveUTF8BOM(ms))
@@ -905,7 +920,7 @@ namespace OSGeo.MapGuide.MaestroAPI
         public static List<KeyValuePair<XmlNode, string>> GetResourceIdPointers(System.Xml.XmlNode item)
         {
             var lst = new Queue<XmlNode>();
-            var res = new List<KeyValuePair<XmlNode, string>>();
+            var res = new System.Collections.Generic.List<KeyValuePair<XmlNode, string>>();
 
             lst.Enqueue(item);
 
@@ -959,7 +974,7 @@ namespace OSGeo.MapGuide.MaestroAPI
         /// </summary>
         private class EnumerateObjectCollector
         {
-            public List<object> items = new List<object>();
+            public System.Collections.Generic.List<object> items = new System.Collections.Generic.List<object>();
 
             public void AddItem(object o)
             {
@@ -1234,7 +1249,7 @@ namespace OSGeo.MapGuide.MaestroAPI
             //Infer geometry storage support and remove unsupported styles
             var scale = vld.GetScaleRangeAt(0);
             var geomTypes = geom.GetIndividualGeometricTypes();
-            var remove = new List<string>();
+            var remove = new System.Collections.Generic.List<string>();
             if (Array.IndexOf(geomTypes, FeatureGeometricType.Point) < 0)
             {
                 remove.Add(FeatureGeometricType.Point.ToString().ToLower());
@@ -1302,7 +1317,7 @@ namespace OSGeo.MapGuide.MaestroAPI
             //ARGB
             yield return new FdoProviderCapabilitiesExpressionFunctionDefinition()
             {
-                ArgumentDefinitionList = new BindingList<FdoProviderCapabilitiesExpressionFunctionDefinitionArgumentDefinition>()
+                ArgumentDefinitionList = new List<FdoProviderCapabilitiesExpressionFunctionDefinitionArgumentDefinition>()
                 {
                     new FdoProviderCapabilitiesExpressionFunctionDefinitionArgumentDefinition()
                     {
@@ -1336,7 +1351,7 @@ namespace OSGeo.MapGuide.MaestroAPI
             //DECAP
             yield return new FdoProviderCapabilitiesExpressionFunctionDefinition()
             {
-                ArgumentDefinitionList = new BindingList<FdoProviderCapabilitiesExpressionFunctionDefinitionArgumentDefinition>()
+                ArgumentDefinitionList = new List<FdoProviderCapabilitiesExpressionFunctionDefinitionArgumentDefinition>()
                 {
                     new FdoProviderCapabilitiesExpressionFunctionDefinitionArgumentDefinition()
                     {
@@ -1352,7 +1367,7 @@ namespace OSGeo.MapGuide.MaestroAPI
             //FEATURECLASS
             yield return new FdoProviderCapabilitiesExpressionFunctionDefinition()
             {
-                ArgumentDefinitionList = new BindingList<FdoProviderCapabilitiesExpressionFunctionDefinitionArgumentDefinition>(),
+                ArgumentDefinitionList = new List<FdoProviderCapabilitiesExpressionFunctionDefinitionArgumentDefinition>(),
                 Description = Strings.Func_FEATURECLASS_Description,
                 Name = "FEATURECLASS", //NOXLATE
                 ReturnType = "String" //NOXLATE
@@ -1360,7 +1375,7 @@ namespace OSGeo.MapGuide.MaestroAPI
             //FEATUREID
             yield return new FdoProviderCapabilitiesExpressionFunctionDefinition()
             {
-                ArgumentDefinitionList = new BindingList<FdoProviderCapabilitiesExpressionFunctionDefinitionArgumentDefinition>(),
+                ArgumentDefinitionList = new List<FdoProviderCapabilitiesExpressionFunctionDefinitionArgumentDefinition>(),
                 Description = Strings.Func_FEATUREID_Description,
                 Name = "FEATUREID", //NOXLATE
                 ReturnType = "String" //NOXLATE
@@ -1368,7 +1383,7 @@ namespace OSGeo.MapGuide.MaestroAPI
             //IF
             yield return new FdoProviderCapabilitiesExpressionFunctionDefinition()
             {
-                ArgumentDefinitionList = new BindingList<FdoProviderCapabilitiesExpressionFunctionDefinitionArgumentDefinition>()
+                ArgumentDefinitionList = new List<FdoProviderCapabilitiesExpressionFunctionDefinitionArgumentDefinition>()
                 {
                     new FdoProviderCapabilitiesExpressionFunctionDefinitionArgumentDefinition()
                     {
@@ -1396,7 +1411,7 @@ namespace OSGeo.MapGuide.MaestroAPI
             //LAYERID
             yield return new FdoProviderCapabilitiesExpressionFunctionDefinition()
             {
-                ArgumentDefinitionList = new BindingList<FdoProviderCapabilitiesExpressionFunctionDefinitionArgumentDefinition>(),
+                ArgumentDefinitionList = new List<FdoProviderCapabilitiesExpressionFunctionDefinitionArgumentDefinition>(),
                 Description = Strings.Func_LAYERID_Description,
                 Name = "LAYERID", //NOXLATE
                 ReturnType = "String" //NOXLATE
@@ -1404,7 +1419,7 @@ namespace OSGeo.MapGuide.MaestroAPI
             //LOOKUP
             yield return new FdoProviderCapabilitiesExpressionFunctionDefinition()
             {
-                ArgumentDefinitionList = new BindingList<FdoProviderCapabilitiesExpressionFunctionDefinitionArgumentDefinition>()
+                ArgumentDefinitionList = new List<FdoProviderCapabilitiesExpressionFunctionDefinitionArgumentDefinition>()
                 {
                     new FdoProviderCapabilitiesExpressionFunctionDefinitionArgumentDefinition()
                     {
@@ -1438,7 +1453,7 @@ namespace OSGeo.MapGuide.MaestroAPI
             //MAPNAME
             yield return new FdoProviderCapabilitiesExpressionFunctionDefinition()
             {
-                ArgumentDefinitionList = new BindingList<FdoProviderCapabilitiesExpressionFunctionDefinitionArgumentDefinition>(),
+                ArgumentDefinitionList = new List<FdoProviderCapabilitiesExpressionFunctionDefinitionArgumentDefinition>(),
                 Description = Strings.Func_MAPNAME_Description,
                 Name = "MAPNAME", //NOXLATE
                 ReturnType = "String" //NOXLATE
@@ -1446,7 +1461,7 @@ namespace OSGeo.MapGuide.MaestroAPI
             //RANGE
             yield return new FdoProviderCapabilitiesExpressionFunctionDefinition()
             {
-                ArgumentDefinitionList = new BindingList<FdoProviderCapabilitiesExpressionFunctionDefinitionArgumentDefinition>()
+                ArgumentDefinitionList = new List<FdoProviderCapabilitiesExpressionFunctionDefinitionArgumentDefinition>()
                 {
                     new FdoProviderCapabilitiesExpressionFunctionDefinitionArgumentDefinition()
                     {
@@ -1486,7 +1501,7 @@ namespace OSGeo.MapGuide.MaestroAPI
             //SESSION
             yield return new FdoProviderCapabilitiesExpressionFunctionDefinition()
             {
-                ArgumentDefinitionList = new BindingList<FdoProviderCapabilitiesExpressionFunctionDefinitionArgumentDefinition>(),
+                ArgumentDefinitionList = new List<FdoProviderCapabilitiesExpressionFunctionDefinitionArgumentDefinition>(),
                 Description = Strings.Func_SESSION_Description,
                 Name = "SESSION", //NOXLATE
                 ReturnType = "String" //NOXLATE
@@ -1494,7 +1509,7 @@ namespace OSGeo.MapGuide.MaestroAPI
             //URLENCODE
             yield return new FdoProviderCapabilitiesExpressionFunctionDefinition()
             {
-                ArgumentDefinitionList = new BindingList<FdoProviderCapabilitiesExpressionFunctionDefinitionArgumentDefinition>()
+                ArgumentDefinitionList = new List<FdoProviderCapabilitiesExpressionFunctionDefinitionArgumentDefinition>()
                 {
                     new FdoProviderCapabilitiesExpressionFunctionDefinitionArgumentDefinition()
                     {

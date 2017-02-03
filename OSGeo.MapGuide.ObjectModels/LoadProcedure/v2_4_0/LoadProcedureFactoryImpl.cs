@@ -21,6 +21,7 @@
 #endregion Disclaimer / License
 
 #define LP220
+using System.Collections.Generic;
 using System.IO;
 
 #pragma warning disable 1591, 0114, 0108
@@ -53,7 +54,7 @@ namespace OSGeo.MapGuide.ObjectModels.LoadProcedure.v1_0_0
             lt.GenerateMaps = false;
             lt.GenerateLayers = true;
             lt.GenerateSpatialDataSources = true;
-            lt.SourceFile = new System.ComponentModel.BindingList<string>();
+            lt.SourceFile = new List<string>();
         }
 
         public static ILoadProcedure CreateDefaultSdf()

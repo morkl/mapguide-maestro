@@ -22,7 +22,6 @@
 
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 
 namespace OSGeo.MapGuide.ObjectModels.PrintLayout
 {
@@ -144,7 +143,7 @@ namespace OSGeo.MapGuide.ObjectModels.PrintLayout
         /// Gets or sets the color of the background.
         /// </summary>
         /// <value>The color of the background.</value>
-        Color BackgroundColor { get; set; }
+        ColorInfo BackgroundColor { get; set; }
     }
 
     /// <summary>

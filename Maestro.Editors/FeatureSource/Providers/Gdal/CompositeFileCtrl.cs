@@ -71,7 +71,7 @@ namespace Maestro.Editors.FeatureSource.Providers.Gdal
                 }
 
                 lstView.Items.Clear();
-                List<string> files = new List<string>();
+                System.Collections.Generic.List<string> files = new System.Collections.Generic.List<string>();
                 foreach (var loc in _conf.RasterLocations)
                 {
                     AddRasterItems(loc.Location, loc.Items);
@@ -118,8 +118,8 @@ namespace Maestro.Editors.FeatureSource.Providers.Gdal
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            List<string> files = new List<string>();
-            List<ListViewItem> items = new List<ListViewItem>();
+            System.Collections.Generic.List<string> files = new System.Collections.Generic.List<string>();
+            System.Collections.Generic.List<ListViewItem> items = new System.Collections.Generic.List<ListViewItem>();
             foreach (ListViewItem item in lstView.SelectedItems)
             {
                 items.Add(item);
@@ -141,7 +141,7 @@ namespace Maestro.Editors.FeatureSource.Providers.Gdal
         private void btnRebuild_Click(object sender, EventArgs e)
         {
             BuildDefaultDocument();
-            List<string> files = new List<string>();
+            System.Collections.Generic.List<string> files = new System.Collections.Generic.List<string>();
             foreach (ListViewItem item in lstView.Items)
             {
                 files.Add(item.Text);
@@ -175,7 +175,7 @@ namespace Maestro.Editors.FeatureSource.Providers.Gdal
             if (result.Added.Count > 0 || result.Removed.Count > 0)
             {
                 _fs.SetConfigurationContent(_service.CurrentConnection, _conf.ToXml());
-                List<ListViewItem> remove = new List<ListViewItem>();
+                System.Collections.Generic.List<ListViewItem> remove = new System.Collections.Generic.List<ListViewItem>();
                 foreach (ListViewItem lvi in lstView.Items)
                 {
                     if (result.Removed.Contains(lvi.Text))
@@ -236,7 +236,7 @@ namespace Maestro.Editors.FeatureSource.Providers.Gdal
             int unit = (total / 100);
             int progress = 0;
 
-            var result = new UpdateConfigResult() { Added = new List<string>(), Removed = new List<string>() };
+            var result = new UpdateConfigResult() { Added = new System.Collections.Generic.List<string>(), Removed = new System.Collections.Generic.List<string>() };
 
             //Remove first
             foreach (var remove in toRemove)
@@ -283,8 +283,10 @@ namespace Maestro.Editors.FeatureSource.Providers.Gdal
                 var loc = conf.AddLocation(dir);
 
                 //Create a temp feature source to attempt interrogation of extents
-                var values = new NameValueCollection();
-                values["DefaultRasterFileLocation"] = add; //NOXLATE
+                var values = new Dictionary<string, string>
+                {
+                    { "DefaultRasterFileLocation", add } //NOXLATE
+                };
                 var fs = ObjectFactory.CreateFeatureSource("OSGeo.Gdal", values); //NOXLATE
 
                 var resId = new ResourceIdentifier("Session:" + conn.SessionID + "//" + Guid.NewGuid() + ".FeatureSource"); //NOXLATE
@@ -353,7 +355,7 @@ namespace Maestro.Editors.FeatureSource.Providers.Gdal
         {
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                List<string> files = new List<string>();
+                System.Collections.Generic.List<string> files = new System.Collections.Generic.List<string>();
                 files.AddRange(Directory.GetFiles(folderBrowserDialog.SelectedPath, "*.png")); //NOXLATE
                 files.AddRange(Directory.GetFiles(folderBrowserDialog.SelectedPath, "*.jpg")); //NOXLATE
                 files.AddRange(Directory.GetFiles(folderBrowserDialog.SelectedPath, "*.jpeg")); //NOXLATE
@@ -389,7 +391,7 @@ namespace Maestro.Editors.FeatureSource.Providers.Gdal
                 picker.SelectFoldersOnly = true;
                 if (picker.ShowDialog() == DialogResult.OK)
                 {
-                    List<string> files = new List<string>();
+                    System.Collections.Generic.List<string> files = new System.Collections.Generic.List<string>();
                     var folder = picker.SelectedItem;
                     if (!string.IsNullOrEmpty(folder))
                     {
@@ -397,7 +399,7 @@ namespace Maestro.Editors.FeatureSource.Providers.Gdal
                                        .Replace("]%", "]"); //NOXLATE
                     }
                     var list = _service.CurrentConnection.ResourceService.EnumerateUnmanagedData(folder, string.Empty, false, UnmanagedDataTypes.Files);
-                    var extensions = new List<string>(new string[] {
+                    var extensions = new System.Collections.Generic.List<string>(new string[] {
                         ".png", //NOXLATE
                         ".jpg", //NOXLATE
                         ".jpeg", //NOXLATE

@@ -1666,7 +1666,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition.v1_0_0
             {
                 if (this.PropertyMapping == null)
                 {
-                    this.PropertyMapping = new BindingList<NameStringPairType>();
+                    this.PropertyMapping = new List<NameStringPairType>();
                 }
 
                 this.PropertyMapping.Add(p);

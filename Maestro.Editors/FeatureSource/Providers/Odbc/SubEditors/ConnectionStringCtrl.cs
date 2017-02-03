@@ -23,6 +23,7 @@
 using OSGeo.MapGuide.MaestroAPI;
 using OSGeo.MapGuide.ObjectModels.FeatureSource;
 using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -45,18 +46,13 @@ namespace Maestro.Editors.FeatureSource.Providers.Odbc.SubEditors
             _service.RegisterCustomNotifier(this);
         }
 
-        private void OnConnectionChanged()
-        {
-            var handler = this.ConnectionChanged;
-            if (handler != null)
-                handler(this, EventArgs.Empty);
-        }
+        private void OnConnectionChanged() => this.ConnectionChanged?.Invoke(this, EventArgs.Empty);
 
-        public NameValueCollection ConnectionProperties
+        public IDictionary<string, string> ConnectionProperties
         {
             get
             {
-                var values = new NameValueCollection();
+                var values = new Dictionary<string, string>();
                 values["ConnectionString"] = txtConnStr.Text; //NOXLATE
                 return values;
             }
@@ -68,15 +64,9 @@ namespace Maestro.Editors.FeatureSource.Providers.Odbc.SubEditors
 
         public event EventHandler ConnectionChanged;
 
-        public Control Content
-        {
-            get { return this; }
-        }
+        public Control Content => this;
 
-        public NameValueCollection Get64BitConnectionProperties()
-        {
-            return this.ConnectionProperties;
-        }
+        public IDictionary<string, string> Get64BitConnectionProperties() => ConnectionProperties;
 
         public event EventHandler RequestDocumentReset;
 

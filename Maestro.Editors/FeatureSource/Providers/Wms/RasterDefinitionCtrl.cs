@@ -62,7 +62,7 @@ namespace Maestro.Editors.FeatureSource.Providers.Wms
             txtEpsg.TextChanged += (s, e) => { item.SpatialContextName = txtEpsg.Text; };
             txtTime.TextChanged += (s, e) => { item.Time = txtTime.Text; };
 
-            List<string> names = new List<string>();
+            System.Collections.Generic.List<string> names = new System.Collections.Generic.List<string>();
             foreach (var layer in item.Layers)
             {
                 names.Add(layer.Name);
@@ -92,7 +92,7 @@ namespace Maestro.Editors.FeatureSource.Providers.Wms
 
         private void btnSelectCs_Click(object sender, EventArgs e)
         {
-            List<string> names = new List<string>();
+            System.Collections.Generic.List<string> names = new System.Collections.Generic.List<string>();
             foreach (var sn in _config.SpatialContexts)
             {
                 names.Add(sn.Name);

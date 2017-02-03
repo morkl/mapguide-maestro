@@ -207,7 +207,7 @@ namespace Maestro.Packaging
         /// <param name="targetfile">The output package file</param>
         /// <param name="insertEraseCommands">True if each resource should have a delete operation inserted before the actual operation, false otherwise</param>
         /// <returns>A DialogResult object that indicates the result of the operation</returns>
-        public static DialogResult RebuildPackage(Form owner, IServerConnection connection, string sourcePackageFile, List<ResourceItem> items, string targetfile, bool insertEraseCommands)
+        public static DialogResult RebuildPackage(Form owner, IServerConnection connection, string sourcePackageFile, System.Collections.Generic.List<ResourceItem> items, string targetfile, bool insertEraseCommands)
         {
             PackageProgress pkgp = new PackageProgress();
 

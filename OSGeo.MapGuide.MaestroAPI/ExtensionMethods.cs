@@ -27,6 +27,8 @@ using OSGeo.MapGuide.ObjectModels;
 using OSGeo.MapGuide.ObjectModels.Common;
 using OSGeo.MapGuide.ObjectModels.DrawingSource;
 using System;
+using System.ComponentModel;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
@@ -37,6 +39,13 @@ namespace OSGeo.MapGuide.MaestroAPI
     /// </summary>
     public static class ExtensionMethods
     {
+        /// <summary>
+        /// Returns the given list housed within a <see cref="T:System.ComponentModel.BindingList<T>" />
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public static BindingList<T> AsBindingList<T>(this IList<T> list) => new BindingList<T>(list);
+
         /// <summary>
         /// Generates the session resource id.
         /// </summary>

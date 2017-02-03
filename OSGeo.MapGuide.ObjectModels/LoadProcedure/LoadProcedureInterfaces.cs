@@ -140,7 +140,7 @@ namespace OSGeo.MapGuide.ObjectModels.LoadProcedure
         /// Gets the source files.
         /// </summary>
         /// <value>The source files.</value>
-        BindingList<string> SourceFile { get; }
+        List<string> SourceFile { get; }
 
         /// <summary>
         /// Adds the file.
@@ -244,7 +244,7 @@ namespace OSGeo.MapGuide.ObjectModels.LoadProcedure
         /// Gets or sets the resource id that were created as part of executing this load procedure
         /// </summary>
         /// <value>The resource id.</value>
-        BindingList<string> ResourceId { get; set; }
+        List<string> ResourceId { get; set; }
     }
 
     /// <summary>

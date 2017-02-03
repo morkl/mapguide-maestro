@@ -53,7 +53,7 @@ namespace Maestro.Base.Commands.SiteExplorer
 
         private static object DoBackgroundWorker(BackgroundWorker wrk, DoWorkEventArgs e, params object[] args)
         {
-            var items = (List<ClassDefinition>)args[0];
+            var items = (System.Collections.Generic.List<ClassDefinition>)args[0];
             var conn = (IServerConnection)args[1];
             string featureSource = (string)args[2];
             string targetFolder = (string)args[3];
@@ -81,7 +81,7 @@ namespace Maestro.Base.Commands.SiteExplorer
         private static void CreateLayers(IServerConnection conn, string featureSource, string targetFolder, string[] featureClasses)
         {
             var wb = Workbench.Instance;
-            List<ClassDefinition> classes = new List<ClassDefinition>();
+            System.Collections.Generic.List<ClassDefinition> classes = new System.Collections.Generic.List<ClassDefinition>();
             foreach (var clsName in featureClasses)
             {
                 classes.Add(conn.FeatureService.GetClassDefinition(featureSource, clsName));

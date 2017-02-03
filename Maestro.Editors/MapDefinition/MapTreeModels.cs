@@ -282,7 +282,7 @@ namespace Maestro.Editors.MapDefinition
                 if (_tileSet != null)
                 {
                     if (_tileSet.SupportsCustomFiniteDisplayScalesUnconditionally)
-                        yield return new ScaleItem(Strings.FiniteDisplayScales, new List<double>(_tileSet.FiniteDisplayScale));
+                        yield return new ScaleItem(Strings.FiniteDisplayScales, new System.Collections.Generic.List<double>(_tileSet.FiniteDisplayScale));
                     foreach (var grp in _tileSet.BaseMapLayerGroups)
                     {
                         yield return new BaseLayerGroupItem(grp);

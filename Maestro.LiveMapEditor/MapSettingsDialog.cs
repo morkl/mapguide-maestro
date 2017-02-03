@@ -51,7 +51,7 @@ namespace Maestro.LiveMapEditor
             txtUpperX.Text = ext.MaxX.ToString(CultureInfo.InvariantCulture);
             txtUpperY.Text = ext.MaxY.ToString(CultureInfo.InvariantCulture);
             cmbBackgroundColor.ResetColors();
-            cmbBackgroundColor.CurrentColor = mdf.BackgroundColor;
+            cmbBackgroundColor.CurrentColor = Utility.ToColor(mdf.BackgroundColor);
             _mdf = mdf;
             btnUseCurrentView.Visible = (_viewer != null);
         }
@@ -100,7 +100,7 @@ namespace Maestro.LiveMapEditor
                 _mdf.Extents = ObjectFactory.CreateEnvelope(llx, lly, urx, ury);
             }
 
-            _mdf.BackgroundColor = cmbBackgroundColor.CurrentColor;
+            _mdf.BackgroundColor = Utility.FromColor(cmbBackgroundColor.CurrentColor);
 
             return true;
         }

@@ -437,7 +437,7 @@ namespace OSGeo.MapGuide.ObjectModels
             {
                 Simple = new ResourceDocumentHeaderTypeMetadataSimple()
                 {
-                    Property = new System.ComponentModel.BindingList<ResourceDocumentHeaderTypeMetadataSimpleProperty>()
+                    Property = new List<ResourceDocumentHeaderTypeMetadataSimpleProperty>()
                 }
             };
         }
@@ -450,7 +450,7 @@ namespace OSGeo.MapGuide.ObjectModels
         {
             return new ResourceSecurityTypeGroups()
             {
-                Group = new System.ComponentModel.BindingList<ResourceSecurityTypeGroupsGroup>()
+                Group = new List<ResourceSecurityTypeGroupsGroup>()
             };
         }
 
@@ -462,7 +462,7 @@ namespace OSGeo.MapGuide.ObjectModels
         {
             return new ResourceSecurityTypeUsers()
             {
-                User = new System.ComponentModel.BindingList<ResourceSecurityTypeUsersUser>()
+                User = new List<ResourceSecurityTypeUsersUser>()
             };
         }
 
@@ -476,8 +476,8 @@ namespace OSGeo.MapGuide.ObjectModels
             {
                 Name = name,
                 FeatureClass = featureClass,
-                CalculatedProperty = new System.ComponentModel.BindingList<OSGeo.MapGuide.ObjectModels.FeatureSource.v1_0_0.CalculatedPropertyType>(),
-                AttributeRelate = new System.ComponentModel.BindingList<OSGeo.MapGuide.ObjectModels.FeatureSource.v1_0_0.AttributeRelateType>()
+                CalculatedProperty = new List<OSGeo.MapGuide.ObjectModels.FeatureSource.v1_0_0.CalculatedPropertyType>(),
+                AttributeRelate = new List<OSGeo.MapGuide.ObjectModels.FeatureSource.v1_0_0.AttributeRelateType>()
             };
         }
 
@@ -489,8 +489,8 @@ namespace OSGeo.MapGuide.ObjectModels
         {
             return new OSGeo.MapGuide.ObjectModels.FeatureSource.v1_0_0.FeatureSourceTypeExtension()
             {
-                CalculatedProperty = new System.ComponentModel.BindingList<OSGeo.MapGuide.ObjectModels.FeatureSource.v1_0_0.CalculatedPropertyType>(),
-                AttributeRelate = new System.ComponentModel.BindingList<OSGeo.MapGuide.ObjectModels.FeatureSource.v1_0_0.AttributeRelateType>()
+                CalculatedProperty = new List<OSGeo.MapGuide.ObjectModels.FeatureSource.v1_0_0.CalculatedPropertyType>(),
+                AttributeRelate = new List<OSGeo.MapGuide.ObjectModels.FeatureSource.v1_0_0.AttributeRelateType>()
             };
         }
 
@@ -528,7 +528,7 @@ namespace OSGeo.MapGuide.ObjectModels
         {
             IAttributeRelation rel = new OSGeo.MapGuide.ObjectModels.FeatureSource.v1_0_0.AttributeRelateType()
             {
-                RelateProperty = new System.ComponentModel.BindingList<OSGeo.MapGuide.ObjectModels.FeatureSource.v1_0_0.RelatePropertyType>(),
+                RelateProperty = new List<OSGeo.MapGuide.ObjectModels.FeatureSource.v1_0_0.RelatePropertyType>(),
             };
             rel.RelateType = RelateTypeEnum.LeftOuter;
             rel.ForceOneToOne = false;
@@ -592,7 +592,7 @@ namespace OSGeo.MapGuide.ObjectModels
             {
                 SourceName = string.Empty,
                 CoordinateSpace = string.Empty,
-                Sheet = new System.ComponentModel.BindingList<OSGeo.MapGuide.ObjectModels.DrawingSource.v1_0_0.DrawingSourceSheet>()
+                Sheet = new List<OSGeo.MapGuide.ObjectModels.DrawingSource.v1_0_0.DrawingSourceSheet>()
             };
         }
 
@@ -606,7 +606,7 @@ namespace OSGeo.MapGuide.ObjectModels
             return new OSGeo.MapGuide.ObjectModels.FeatureSource.v1_0_0.FeatureSourceType()
             {
                 Provider = provider,
-                Parameter = new System.ComponentModel.BindingList<OSGeo.MapGuide.ObjectModels.FeatureSource.v1_0_0.NameValuePairType>()
+                Parameter = new List<OSGeo.MapGuide.ObjectModels.FeatureSource.v1_0_0.NameValuePairType>()
             };
         }
 
@@ -616,7 +616,7 @@ namespace OSGeo.MapGuide.ObjectModels
         /// <param name="provider">The provider.</param>
         /// <param name="values">The connection properties.</param>
         /// <returns></returns>
-        public static IFeatureSource CreateFeatureSource(string provider, NameValueCollection values)
+        public static IFeatureSource CreateFeatureSource(string provider, IDictionary<string, string> values)
         {
             var fs = CreateFeatureSource(provider);
             fs.ApplyConnectionProperties(values);
@@ -833,8 +833,8 @@ namespace OSGeo.MapGuide.ObjectModels
 
             IApplicationDefinition appDef = new ApplicationDefinitionType()
             {
-                MapSet = new System.ComponentModel.BindingList<MapGroupType>(),
-                WidgetSet = new System.ComponentModel.BindingList<WidgetSetType>()
+                MapSet = new List<MapGroupType>(),
+                WidgetSet = new List<WidgetSetType>()
             };
 
             //Find matching template. If it's a known template we should be able to
@@ -932,14 +932,18 @@ namespace OSGeo.MapGuide.ObjectModels
 
             //Measure
             var measure = (IUIWidget)appDef.CreateWidget("Measure", widgets.FindWidget(KnownWidgetNames.Measure)); //NOXLATE
-            var measureParams = new NameValueCollection();
-            measureParams["Type"] = "both"; //NOXLATE
-            measureParams["MeasureTooltipContainer"] = "MeasureResult"; //NOXLATE
-            measureParams["MeasureTooltipType"] = "dynamic"; //NOXLATE
-            measureParams["DistancePrecision"] = "0"; //NOXLATE
-            measureParams["AreaPrecision"] = "0"; //NOXLATE
-            measureParams["Units"] = "meters"; //NOXLATE
-            measureParams["Target"] = "TaskPane"; //NOXLATE
+            //var measureParams = new NameValueCollection();
+
+            var measureParams = new Dictionary<string, string>()
+            {
+                { "Type", "both" }, //NOXLATE
+                { "MeasureTooltipContainer", "MeasureResult" }, //NOXLATE
+                { "MeasureTooltipType", "dynamic" }, //NOXLATE
+                { "DistancePrecision", "0" }, //NOXLATE
+                { "AreaPrecision", "0" }, //NOXLATE
+                { "Units", "meters" }, //NOXLATE
+                { "Target", "TaskPane" } //NOXLATE
+            };
             measure.SetAllValues(measureParams);
             measure.StatusText = buffer.Tooltip = Strings.ADF_Widget_Measure_Desc;
             measure.Tooltip = Strings.ADF_Widget_Measure_Label;
@@ -1420,8 +1424,8 @@ namespace OSGeo.MapGuide.ObjectModels
         {
             return new OSGeo.MapGuide.ObjectModels.PrintLayout.v1_0_0.PrintLayout()
             {
-                CustomLogos = new System.ComponentModel.BindingList<OSGeo.MapGuide.ObjectModels.PrintLayout.v1_0_0.PrintLayoutLogo>(),
-                CustomText = new System.ComponentModel.BindingList<OSGeo.MapGuide.ObjectModels.PrintLayout.v1_0_0.PrintLayoutText>(),
+                CustomLogos = new List<OSGeo.MapGuide.ObjectModels.PrintLayout.v1_0_0.PrintLayoutLogo>(),
+                CustomText = new List<OSGeo.MapGuide.ObjectModels.PrintLayout.v1_0_0.PrintLayoutText>(),
                 LayoutProperties = new OSGeo.MapGuide.ObjectModels.PrintLayout.v1_0_0.PrintLayoutLayoutProperties()
                 {
                     ShowCustomLogos = false,
@@ -1458,7 +1462,7 @@ namespace OSGeo.MapGuide.ObjectModels
         {
             return new OSGeo.MapGuide.ObjectModels.SymbolLibrary.v1_0_0.SymbolLibraryType()
             {
-                Symbol = new System.ComponentModel.BindingList<SymbolLibrary.v1_0_0.SymbolType>()
+                Symbol = new List<SymbolLibrary.v1_0_0.SymbolType>()
             };
         }
 

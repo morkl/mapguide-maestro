@@ -629,7 +629,7 @@ namespace Maestro.Editors.LayerDefinition.Vector.Scales
         {
             return () =>
             {
-                var list = new List<string>();
+                var list = new System.Collections.Generic.List<string>();
                 foreach (object val in values)
                 {
                     list.Add(val.ToString());

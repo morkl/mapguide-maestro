@@ -99,7 +99,7 @@ namespace Maestro.Editors.LayerDefinition.Vector
             if (!_vl.HasVectorScaleRanges())
                 return;
 
-            List<IVectorScaleRange> ranges = new List<IVectorScaleRange>();
+            System.Collections.Generic.List<IVectorScaleRange> ranges = new System.Collections.Generic.List<IVectorScaleRange>();
             foreach (IVectorScaleRange sc in _vl.VectorScaleRange)
             {
                 ranges.Add(sc);

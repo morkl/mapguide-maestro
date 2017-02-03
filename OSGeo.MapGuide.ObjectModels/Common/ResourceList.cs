@@ -20,7 +20,9 @@
 
 #endregion Disclaimer / License
 
+using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Linq;
 using System.Xml.Serialization;
 #pragma warning disable 1591, 0114, 0108, 0114, 0108
 namespace OSGeo.MapGuide.ObjectModels.Common
@@ -113,15 +115,7 @@ namespace OSGeo.MapGuide.ObjectModels.Common
         /// Returns a <see cref="NameValueCollection"/> of all the metadata properties
         /// </summary>
         /// <returns></returns>
-        public NameValueCollection GetProperties()
-        {
-            var dict = new NameValueCollection();
-            foreach (var val in this.Simple.Property)
-            {
-                dict.Add(val.Name, val.Value);
-            }
-            return dict;
-        }
+        public IDictionary<string, string> GetProperties() => this.Simple.Property.ToDictionary(p => p.Name, p => p.Value);
 
         /// <summary>
         /// Sets a metadata property.
@@ -150,21 +144,21 @@ namespace OSGeo.MapGuide.ObjectModels.Common
         /// Applies the specified set of properties to this instance
         /// </summary>
         /// <param name="values"></param>
-        public void ApplyProperties(NameValueCollection values)
+        public void ApplyProperties(IDictionary<string, string> values)
         {
             var dict = GetProperties();
-            foreach (string key in values.Keys)
+            foreach (var kvp in values)
             {
-                dict[key] = values[key];
+                dict[kvp.Key] = kvp.Value;
             }
 
             this.Simple.Property.Clear();
-            foreach (string key in dict.Keys)
+            foreach (var kvp in dict)
             {
                 this.Simple.Property.Add(new ResourceDocumentHeaderTypeMetadataSimpleProperty()
                 {
-                    Name = key,
-                    Value = dict[key]
+                    Name = kvp.Key,
+                    Value = kvp.Value
                 });
             }
         }

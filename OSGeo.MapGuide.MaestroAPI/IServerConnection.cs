@@ -25,6 +25,8 @@ using OSGeo.MapGuide.MaestroAPI.CoordinateSystem;
 using OSGeo.MapGuide.MaestroAPI.Services;
 using OSGeo.MapGuide.ObjectModels.LoadProcedure;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 
 namespace OSGeo.MapGuide.MaestroAPI
@@ -75,7 +77,7 @@ namespace OSGeo.MapGuide.MaestroAPI
         /// </summary>
         /// <remarks>Each invocation returns a new instance</remarks>
         /// <returns></returns>
-        NameValueCollection CloneParameters { get; }
+        IDictionary<string, string> CloneParameters { get; }
 
         /// <summary>
         /// Returns a clone copy of this connection

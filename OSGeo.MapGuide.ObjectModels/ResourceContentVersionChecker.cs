@@ -35,8 +35,8 @@ namespace OSGeo.MapGuide.ObjectModels
     /// </summary>
     public sealed class ResourceContentVersionChecker : IDisposable
     {
-        private readonly XmlReader _reader;
-        private readonly Stream _stream;
+        private XmlReader _reader;
+        private Stream _stream;
 
         /// <summary>
         /// Constructor
@@ -48,7 +48,7 @@ namespace OSGeo.MapGuide.ObjectModels
             Utils.CopyStream(stream, ms);
             ms.Position = 0L; //Rewind
             _stream = ms;
-            _reader = new XmlTextReader(_stream);
+            _reader = XmlReader.Create(_stream);
         }
 
         /// <summary>
@@ -105,7 +105,6 @@ namespace OSGeo.MapGuide.ObjectModels
             }
             finally
             {
-                xr?.Close();
                 xr?.Dispose();
                 xr = null;
             }
@@ -116,11 +115,10 @@ namespace OSGeo.MapGuide.ObjectModels
         /// </summary>
         public void Dispose()
         {
-            if (_stream != null)
-                _stream.Dispose();
-
-            if (_reader != null)
-                _reader.Close();
+            _stream?.Dispose();
+            _stream = null;
+            _reader?.Dispose();
+            _reader = null;
         }
     }
 }

@@ -132,7 +132,7 @@ namespace Maestro.Editors.FeatureSource.Providers
             }
         }
 
-        private List<DataGridViewCell> pwdCells = new List<DataGridViewCell>();
+        private System.Collections.Generic.List<DataGridViewCell> pwdCells = new System.Collections.Generic.List<DataGridViewCell>();
 
         private bool IsPasswordCell(DataGridViewCell cell)
         {
@@ -212,7 +212,7 @@ namespace Maestro.Editors.FeatureSource.Providers
                 return;
 
             var cell = grdConnectionParameters.SelectedCells[0];
-            List<string> values = new List<string>();
+            System.Collections.Generic.List<string> values = new System.Collections.Generic.List<string>();
             try
             {
                 var prop = grdConnectionParameters.Rows[cell.RowIndex].Cells[0].Value.ToString();
@@ -254,7 +254,7 @@ namespace Maestro.Editors.FeatureSource.Providers
                 return;
 
             var cell = grdConnectionParameters.SelectedCells[0];
-            var values = new List<string>();
+            var values = new System.Collections.Generic.List<string>();
             try
             {
                 var prop = grdConnectionParameters.Rows[cell.RowIndex].Cells[0].Value.ToString();
@@ -378,7 +378,7 @@ namespace Maestro.Editors.FeatureSource.Providers
         private void lnkSetCredentials_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             var prov = _service.CurrentConnection.FeatureService.GetFeatureProvider(_fs.Provider);
-            var connProps = new List<string>();
+            var connProps = new System.Collections.Generic.List<string>();
             foreach (var p in prov.ConnectionProperties)
             {
                 if (!p.Enumerable)

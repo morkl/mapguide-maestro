@@ -62,7 +62,7 @@ namespace OSGeo.MapGuide.MaestroAPI.CrossConnection.Tests
             var source = new Mock<IServerConnection>();
             var target = new Mock<IServerConnection>();
 
-            var emptyDataList = new ResourceDataList() { ResourceData = new System.ComponentModel.BindingList<ResourceDataListResourceData>() };
+            var emptyDataList = new ResourceDataList() { ResourceData = new List<ResourceDataListResourceData>() };
 
             string [] resources = {
                 "Library://Test/Data.FeatureSource",
@@ -130,7 +130,7 @@ namespace OSGeo.MapGuide.MaestroAPI.CrossConnection.Tests
             var source = new Mock<IServerConnection>();
             var target = new Mock<IServerConnection>();
 
-            var emptyDataList = new ResourceDataList() { ResourceData = new System.ComponentModel.BindingList<ResourceDataListResourceData>() };
+            var emptyDataList = new ResourceDataList() { ResourceData = new List<ResourceDataListResourceData>() };
 
             string[] resources = {
                 "Library://Test/Data.FeatureSource",
@@ -207,7 +207,7 @@ namespace OSGeo.MapGuide.MaestroAPI.CrossConnection.Tests
             var source = new Mock<IServerConnection>();
             var target = new Mock<IServerConnection>();
 
-            var emptyDataList = new ResourceDataList() { ResourceData = new System.ComponentModel.BindingList<ResourceDataListResourceData>() };
+            var emptyDataList = new ResourceDataList() { ResourceData = new List<ResourceDataListResourceData>() };
 
             string[] resources = {
                 "Library://Test/Data.FeatureSource",
@@ -281,7 +281,7 @@ namespace OSGeo.MapGuide.MaestroAPI.CrossConnection.Tests
             var source = new Mock<IServerConnection>();
             var target = new Mock<IServerConnection>();
 
-            var emptyDataList = new ResourceDataList() { ResourceData = new System.ComponentModel.BindingList<ResourceDataListResourceData>() };
+            var emptyDataList = new ResourceDataList() { ResourceData = new List<ResourceDataListResourceData>() };
 
             string[] resources = {
                 "Library://Test/Data.FeatureSource",

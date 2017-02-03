@@ -295,8 +295,10 @@ namespace OSGeo.MapGuide.MaestroAPI.Commands
                             // 4. If no spatial contexts are detected, assign a default one from the load procedure and save the modified feature source.
 
                             //Step 1: Create feature source document
-                            var conp = new NameValueCollection();
-                            conp["DefaultFileLocation"] = StringConstants.MgDataFilePath + dataName; //NOXLATE
+                            var conp = new Dictionary<string, string>
+                            {
+                                { "DefaultFileLocation", StringConstants.MgDataFilePath + dataName } //NOXLATE
+                            };
                             var fs = ObjectFactory.CreateFeatureSource("OSGeo.SHP", conp); //NOXLATE
                             fs.ResourceID = fsId;
 
@@ -612,8 +614,10 @@ namespace OSGeo.MapGuide.MaestroAPI.Commands
                                         provider = "OSGeo.SQLite"; //NOXLATE
                                         break;
                                 }
-                                var conp = new NameValueCollection();
-                                conp["File"] = StringConstants.MgDataFilePath + dataName;
+                                var conp = new Dictionary<string, string>
+                                {
+                                    { "File", StringConstants.MgDataFilePath + dataName } //NOXLATE
+                                };
                                 var fs = ObjectFactory.CreateFeatureSource(provider, conp);
                                 fs.ResourceID = fsId;
 

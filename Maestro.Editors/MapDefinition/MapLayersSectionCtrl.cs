@@ -489,7 +489,7 @@ namespace Maestro.Editors.MapDefinition
             CommonPropertyCtrl commCtrl = new CommonPropertyCtrl();
             commCtrl.Dock = DockStyle.Fill;
 
-            List<object> values = new List<object>();
+            System.Collections.Generic.List<object> values = new System.Collections.Generic.List<object>();
             for (int i = 0; i < nodes.Count; i++)
             {
                 var grp = nodes[i].Tag as GroupItem;
@@ -708,7 +708,7 @@ namespace Maestro.Editors.MapDefinition
 
         private void btnRemoveGroup_Click(object sender, EventArgs e)
         {
-            var remove = new List<GroupItem>();
+            var remove = new System.Collections.Generic.List<GroupItem>();
             foreach (var item in GetSelectedLayerGroupItems())
             {
                 var group = item as GroupItem;
@@ -776,7 +776,7 @@ namespace Maestro.Editors.MapDefinition
 
         private void btnConvertLayerGroupToBaseGroup_Click(object sender, EventArgs e)
         {
-            List<string> messages = new List<string>();
+            System.Collections.Generic.List<string> messages = new System.Collections.Generic.List<string>();
             foreach (var item in GetSelectedLayerGroupItems())
             {
                 var group = item as GroupItem;
@@ -824,7 +824,7 @@ namespace Maestro.Editors.MapDefinition
 
         private void btnBaseGroupToRegular_Click(object sender, EventArgs e)
         {
-            var messages = new List<string>();
+            var messages = new System.Collections.Generic.List<string>();
             foreach (var item in GetSelectedTiledLayerItems())
             {
                 var group = item as BaseLayerGroupItem;
@@ -1115,7 +1115,7 @@ namespace Maestro.Editors.MapDefinition
 
         private IEnumerable<object> GetSelectedLayerGroupItems()
         {
-            var result = new List<object>();
+            var result = new System.Collections.Generic.List<object>();
             var nodes = trvLayersGroup.SelectedNodes;
             if (nodes != null)
             {
@@ -1128,7 +1128,7 @@ namespace Maestro.Editors.MapDefinition
 
         private IEnumerable<object> GetSelectedTiledLayerItems()
         {
-            var result = new List<object>();
+            var result = new System.Collections.Generic.List<object>();
             var nodes = trvBaseLayers.SelectedNodes;
             if (nodes != null)
             {
@@ -1146,7 +1146,7 @@ namespace Maestro.Editors.MapDefinition
 
         private void btnRemoveBaseLayerGroup_Click(object sender, EventArgs e)
         {
-            var remove = new List<BaseLayerGroupItem>();
+            var remove = new System.Collections.Generic.List<BaseLayerGroupItem>();
             foreach (var item in GetSelectedTiledLayerItems())
             {
                 var group = item as BaseLayerGroupItem;
@@ -1311,7 +1311,7 @@ namespace Maestro.Editors.MapDefinition
         {
             if (layerIndex > 0)
             {
-                var list = new List<IMapLayer>(mdf.MapLayer);
+                var list = new System.Collections.Generic.List<IMapLayer>(mdf.MapLayer);
                 for (int i = layerIndex - 1; i >= 0; i--)
                 {
                     if (list[i].Group == group)
@@ -1332,7 +1332,7 @@ namespace Maestro.Editors.MapDefinition
         {
             if (layerIndex < mdf.GetDynamicLayerCount() - 1)
             {
-                var list = new List<IMapLayer>(mdf.MapLayer);
+                var list = new System.Collections.Generic.List<IMapLayer>(mdf.MapLayer);
                 for (int i = layerIndex + 1; i < mdf.GetDynamicLayerCount(); i++)
                 {
                     if (list[i].Group == group)

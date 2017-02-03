@@ -348,7 +348,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition.v1_0_0
             set
             {
                 //Clear old ones
-                var remove = new List<object>();
+                var remove = new System.Collections.Generic.List<object>();
                 foreach (var item in this.itemsField)
                 {
                     if (typeof(ICompositeTypeStyle2).IsAssignableFrom(item.GetType()))
@@ -1934,7 +1934,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition.v1_0_0
             {
                 if (this.PropertyMapping == null)
                 {
-                    this.PropertyMapping = new BindingList<NameStringPairType>();
+                    this.PropertyMapping = new List<NameStringPairType>();
                 }
 
                 this.PropertyMapping.Add(p);
@@ -2184,7 +2184,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition.v1_0_0
                 Item = resourceId,
                 ParameterOverrides = new ParameterOverrides()
                 {
-                    Override = new BindingList<Override>()
+                    Override = new List<Override>()
                 },
             };
         }
@@ -2202,7 +2202,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition.v1_0_0
 #endif
                 ParameterOverrides = new ParameterOverrides()
                 {
-                    Override = new BindingList<Override>()
+                    Override = new List<Override>()
                 }
             };
         }
@@ -2220,7 +2220,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition.v1_0_0
 #endif
                 ParameterOverrides = new ParameterOverrides()
                 {
-                    Override = new BindingList<Override>()
+                    Override = new List<Override>()
                 }
             };
         }

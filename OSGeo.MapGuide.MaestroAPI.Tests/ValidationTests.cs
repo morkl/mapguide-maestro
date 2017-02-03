@@ -309,7 +309,7 @@ namespace OSGeo.MapGuide.MaestroAPI.Tests
             mockFeatSvc.Setup(fs => fs.TestConnection(It.Is<string>(arg => arg == resId))).Returns("true");
             mockFeatSvc.Setup(fs => fs.GetSpatialContextInfo(It.Is<string>(arg => arg == resId), It.IsAny<bool>())).Returns(new FdoSpatialContextList
             {
-                SpatialContext = new System.ComponentModel.BindingList<FdoSpatialContextListSpatialContext>()
+                SpatialContext = new List<FdoSpatialContextListSpatialContext>()
                 {
                     sc
                 }
@@ -462,7 +462,7 @@ namespace OSGeo.MapGuide.MaestroAPI.Tests
             var sc = CreateTestSpatialContext("Default");
             var scList = new FdoSpatialContextList
             {
-                SpatialContext = new System.ComponentModel.BindingList<FdoSpatialContextListSpatialContext>() { sc }
+                SpatialContext = new List<FdoSpatialContextListSpatialContext>() { sc }
             };
 
             var mockExt = new Mock<IFeatureSourceExtension>();
@@ -509,7 +509,7 @@ namespace OSGeo.MapGuide.MaestroAPI.Tests
             var sc = CreateTestSpatialContext("Default");
             var scList = new FdoSpatialContextList
             {
-                SpatialContext = new System.ComponentModel.BindingList<FdoSpatialContextListSpatialContext>() { sc }
+                SpatialContext = new List<FdoSpatialContextListSpatialContext>() { sc }
             };
 
             var mockExt = new Mock<IFeatureSourceExtension>();
@@ -523,7 +523,7 @@ namespace OSGeo.MapGuide.MaestroAPI.Tests
             var mockResSvc = new Mock<IResourceService>();
 
             mockResSvc.Setup(rs => rs.GetResourceData(It.Is<string>(arg => arg == resId), It.Is<string>(arg => arg == dataName))).Returns((Stream)null);
-            mockResSvc.Setup(rs => rs.EnumerateResourceData(It.IsAny<string>())).Returns(new ResourceDataList { ResourceData = new System.ComponentModel.BindingList<ResourceDataListResourceData>() });
+            mockResSvc.Setup(rs => rs.EnumerateResourceData(It.IsAny<string>())).Returns(new ResourceDataList { ResourceData = new List<ResourceDataListResourceData>() });
             mockFeatSvc.Setup(fs => fs.TestConnection(It.Is<string>(arg => arg == resId))).Returns("true");
             mockFeatSvc.Setup(fs => fs.GetSchemas(It.Is<string>(arg => arg == resId))).Returns(new[] { schemaName });
             mockFeatSvc.Setup(fs => fs.GetSpatialContextInfo(It.Is<string>(arg => arg == resId), It.IsAny<bool>())).Returns(scList);
@@ -564,7 +564,7 @@ namespace OSGeo.MapGuide.MaestroAPI.Tests
             var sc = CreateTestSpatialContext("Default");
             var scList = new FdoSpatialContextList
             {
-                SpatialContext = new System.ComponentModel.BindingList<FdoSpatialContextListSpatialContext>() { sc }
+                SpatialContext = new List<FdoSpatialContextListSpatialContext>() { sc }
             };
 
             var mockExt = new Mock<IFeatureSourceExtension>();
@@ -632,15 +632,15 @@ namespace OSGeo.MapGuide.MaestroAPI.Tests
             var badScList = new FdoSpatialContextList();
             var scList = new FdoSpatialContextList
             {
-                SpatialContext = new System.ComponentModel.BindingList<FdoSpatialContextListSpatialContext>() { sc }
+                SpatialContext = new List<FdoSpatialContextListSpatialContext>() { sc }
             };
             var scListBogus = new FdoSpatialContextList
             {
-                SpatialContext = new System.ComponentModel.BindingList<FdoSpatialContextListSpatialContext>() { scBogus }
+                SpatialContext = new List<FdoSpatialContextListSpatialContext>() { scBogus }
             };
             var scListOOB = new FdoSpatialContextList
             {
-                SpatialContext = new System.ComponentModel.BindingList<FdoSpatialContextListSpatialContext>() { scOOB }
+                SpatialContext = new List<FdoSpatialContextListSpatialContext>() { scOOB }
             };
 
             var mockExt = new Mock<IFeatureSourceExtension>();
@@ -743,7 +743,7 @@ namespace OSGeo.MapGuide.MaestroAPI.Tests
             var sc = CreateTestSpatialContext("Default");
             var scList = new FdoSpatialContextList
             {
-                SpatialContext = new System.ComponentModel.BindingList<FdoSpatialContextListSpatialContext>() { sc }
+                SpatialContext = new List<FdoSpatialContextListSpatialContext>() { sc }
             };
 
             var mockExt = new Mock<IFeatureSourceExtension>();
@@ -1166,7 +1166,7 @@ namespace OSGeo.MapGuide.MaestroAPI.Tests
 
             var sheetList = new DrawingSectionList
             {
-                Section = new System.ComponentModel.BindingList<DrawingSectionListSection>()
+                Section = new List<DrawingSectionListSection>()
             };
             mockDrawSvc.Setup(dsvc => dsvc.EnumerateDrawingSections(It.IsAny<string>())).Returns(sheetList);
 
@@ -1225,7 +1225,7 @@ namespace OSGeo.MapGuide.MaestroAPI.Tests
 
             var sheetList = new DrawingSectionList
             {
-                Section = new System.ComponentModel.BindingList<DrawingSectionListSection>()
+                Section = new List<DrawingSectionListSection>()
                 {
                     new DrawingSectionListSection { Name = "Foo" }
                 }
@@ -1346,7 +1346,7 @@ namespace OSGeo.MapGuide.MaestroAPI.Tests
             var mockFeatSvc = new Mock<IFeatureService>();
             var mockResSvc = new Mock<IResourceService>();
             mockFeatSvc.Setup(f => f.GetIdentityProperties(It.IsAny<string>(), It.IsAny<string>())).Returns(new string[0]);
-            mockFeatSvc.Setup(f => f.GetSpatialContextInfo(It.IsAny<string>(), It.IsAny<bool>())).Returns(() => new FdoSpatialContextList { SpatialContext = new System.ComponentModel.BindingList<FdoSpatialContextListSpatialContext>() });
+            mockFeatSvc.Setup(f => f.GetSpatialContextInfo(It.IsAny<string>(), It.IsAny<bool>())).Returns(() => new FdoSpatialContextList { SpatialContext = new List<FdoSpatialContextListSpatialContext>() });
             mockResSvc.Setup(r => r.GetResource(It.IsAny<string>())).Returns<string>((resId) =>
             {
                 IResource res = null;
@@ -1411,7 +1411,7 @@ namespace OSGeo.MapGuide.MaestroAPI.Tests
                 {
                     return new FdoSpatialContextList
                     {
-                        SpatialContext = new System.ComponentModel.BindingList<FdoSpatialContextListSpatialContext>
+                        SpatialContext = new List<FdoSpatialContextListSpatialContext>
                         {
                             CreateTestSpatialContext("Default")
                         }
@@ -1421,7 +1421,7 @@ namespace OSGeo.MapGuide.MaestroAPI.Tests
                 {
                     return new FdoSpatialContextList //Trigger multiple SC warning
                     {
-                        SpatialContext = new System.ComponentModel.BindingList<FdoSpatialContextListSpatialContext>
+                        SpatialContext = new List<FdoSpatialContextListSpatialContext>
                         {
                             CreateTestSpatialContext("SC1", LL84_WKT),
                             CreateTestSpatialContext("SC2", LL84_WKT)
@@ -1432,7 +1432,7 @@ namespace OSGeo.MapGuide.MaestroAPI.Tests
                 {
                     return new FdoSpatialContextList
                     {
-                        SpatialContext = new System.ComponentModel.BindingList<FdoSpatialContextListSpatialContext>
+                        SpatialContext = new List<FdoSpatialContextListSpatialContext>
                         {
                             CreateTestSpatialContext("Default") //Trigger raster reprojection warning
                         }
@@ -1440,7 +1440,7 @@ namespace OSGeo.MapGuide.MaestroAPI.Tests
                 }
                 return new FdoSpatialContextList
                 {
-                    SpatialContext = new System.ComponentModel.BindingList<FdoSpatialContextListSpatialContext>()
+                    SpatialContext = new List<FdoSpatialContextListSpatialContext>()
                 };
             }));
             mockResSvc.Setup(r => r.GetResource(It.IsAny<string>())).Returns<string>((resId) =>

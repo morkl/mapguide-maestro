@@ -375,7 +375,7 @@ namespace Maestro.Editors.LayerDefinition.Vector.GridEditor
                 clone.Label = _rule.Label.Clone();
             if (_rule.Strokes != null && _rule.StrokeCount > 0)
             {
-                var strokes = new List<IStroke>();
+                var strokes = new System.Collections.Generic.List<IStroke>();
                 foreach (var st in _rule.Strokes)
                 {
                     strokes.Add(st.Clone());

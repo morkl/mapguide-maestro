@@ -44,7 +44,7 @@ namespace Maestro.Base.Commands
         {
             //Collect all documents to be validated. Some of these selected items
             //may be folders.
-            var documents = new List<string>();
+            var documents = new System.Collections.Generic.List<string>();
             foreach (object a in args)
             {
                 string rid = a.ToString();
@@ -112,17 +112,17 @@ namespace Maestro.Base.Commands
                 {
                     //Sigh! LINQ would've made this code so simple...
 
-                    var sort = new Dictionary<string, List<ValidationIssue>>();
+                    var sort = new Dictionary<string, System.Collections.Generic.List<ValidationIssue>>();
                     foreach (var issue in issues)
                     {
                         string resId = issue.Resource.ResourceID;
                         if (!sort.ContainsKey(resId))
-                            sort[resId] = new List<ValidationIssue>();
+                            sort[resId] = new System.Collections.Generic.List<ValidationIssue>();
 
                         sort[resId].Add(issue);
                     }
 
-                    var groupedIssues = new List<KeyValuePair<string, ValidationIssue[]>>();
+                    var groupedIssues = new System.Collections.Generic.List<KeyValuePair<string, ValidationIssue[]>>();
                     foreach (var kvp in sort)
                     {
                         groupedIssues.Add(

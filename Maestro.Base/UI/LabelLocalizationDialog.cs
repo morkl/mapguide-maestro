@@ -89,11 +89,11 @@ namespace Maestro.Base.UI
 
     internal class LocalizableElement : INotifyPropertyChanged
     {
-        private List<XmlNode> _element;
+        private System.Collections.Generic.List<XmlNode> _element;
 
         public LocalizableElement(XmlNode el)
         {
-            _element = new List<XmlNode>();
+            _element = new System.Collections.Generic.List<XmlNode>();
             _element.Add(el);
             this.Label = el.InnerText;
             this.Translate = false;

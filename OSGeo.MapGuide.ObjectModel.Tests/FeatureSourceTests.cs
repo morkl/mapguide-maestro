@@ -51,7 +51,7 @@ namespace OSGeo.MapGuide.ObjectModels.Tests
             var fs = ObjectFactory.CreateFeatureSource("OSGeo.SDF");
             Assert.IsTrue(fs.ConnectionString.Length == 0);
 
-            var connParams = new NameValueCollection();
+            var connParams = new Dictionary<string, string>();
             connParams["File"] = "%MG_DATA_FILE_PATH%Foo.sdf";
 
             fs = ObjectFactory.CreateFeatureSource("OSGeo.SDF", connParams);

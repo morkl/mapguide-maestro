@@ -23,7 +23,7 @@
 #define LDF_110
 using OSGeo.MapGuide.ObjectModels.SymbolDefinition;
 using System;
-using System.Drawing;
+using System.Collections.Generic;
 using System.IO;
 
 #pragma warning disable 1591, 0114, 0108
@@ -133,7 +133,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition.v1_0_0
         {
             return new VectorScaleRangeType()
             {
-                Items = new System.ComponentModel.BindingList<object>(),
+                Items = new List<object>(),
                 AreaStyle = CreateDefaultAreaStyle(),
                 LineStyle = CreateDefaultLineStyle(),
                 PointStyle = CreateDefaultPointStyle()
@@ -156,7 +156,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition.v1_0_0
 
             //TODO: Create composite type style if 1.2 or 1.3 schema
 
-            vl.VectorScaleRange = new System.ComponentModel.BindingList<VectorScaleRangeType>();
+            vl.VectorScaleRange = new List<VectorScaleRangeType>();
             var defaultRange = this.CreateVectorScaleRangeInstance();
             /*
             var defaultRange = new VectorScaleRangeType()
@@ -180,14 +180,14 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition.v1_0_0
         {
             var gl = new GridLayerDefinitionType()
             {
-                GridScaleRange = new System.ComponentModel.BindingList<GridScaleRangeType>(),
+                GridScaleRange = new List<GridScaleRangeType>(),
             };
 
             gl.AddGridScaleRange(new GridScaleRangeType()
             {
                 ColorStyle = new GridColorStyleType()
                 {
-                    ColorRule = new System.ComponentModel.BindingList<GridColorRuleType>()
+                    ColorRule = new List<GridColorRuleType>()
                     {
                         new GridColorRuleType() {
                             LegendLabel = string.Empty,
@@ -220,7 +220,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition.v1_0_0
         /// <param name="background"></param>
         /// <param name="foreground"></param>
         /// <returns></returns>
-        public IFill CreateFill(string pattern, System.Drawing.Color background, System.Drawing.Color foreground)
+        public IFill CreateFill(string pattern, ColorInfo background, ColorInfo foreground)
         {
             return new FillType()
             {
@@ -235,7 +235,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition.v1_0_0
         /// </summary>
         /// <param name="color"></param>
         /// <returns></returns>
-        public IStroke CreateStroke(System.Drawing.Color color)
+        public IStroke CreateStroke(ColorInfo color)
         {
             return new StrokeType()
             {
@@ -248,14 +248,14 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition.v1_0_0
 
         public IStroke CreateDefaultStroke()
         {
-            return CreateStroke(Color.Black);
+            return CreateStroke(ColorInfo.Black);
         }
 
         public IPointVectorStyle CreateDefaultPointStyle()
         {
             IPointVectorStyle pts = new PointTypeStyleType()
             {
-                PointRule = new System.ComponentModel.BindingList<PointRuleType>()
+                PointRule = new List<PointRuleType>()
             };
             pts.AddRule(CreateDefaultPointRule());
             return pts;
@@ -265,7 +265,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition.v1_0_0
         {
             ILineVectorStyle lts = new LineTypeStyleType()
             {
-                LineRule = new System.ComponentModel.BindingList<LineRuleType>()
+                LineRule = new List<LineRuleType>()
             };
             lts.AddRule(CreateDefaultLineRule());
             return lts;
@@ -275,7 +275,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition.v1_0_0
         {
             IAreaVectorStyle ats = new AreaTypeStyleType()
             {
-                AreaRule = new System.ComponentModel.BindingList<AreaRuleType>()
+                AreaRule = new List<AreaRuleType>()
             };
             ats.AddRule(CreateDefaultAreaRule());
             return ats;
@@ -285,7 +285,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition.v1_0_0
         {
             return new VectorScaleRangeType()
             {
-                Items = new System.ComponentModel.BindingList<object>(),
+                Items = new List<object>(),
                 AreaStyle = CreateDefaultAreaStyle(),
                 LineStyle = CreateDefaultLineStyle(),
                 PointStyle = CreateDefaultPointStyle()
@@ -294,7 +294,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition.v1_0_0
 
         public IFill CreateDefaultFill()
         {
-            return CreateFill("Solid", Color.White, Color.White); //NOXLATE
+            return CreateFill("Solid", ColorInfo.White, ColorInfo.White); //NOXLATE
         }
 
         public IMarkSymbol CreateDefaultMarkSymbol()
@@ -326,7 +326,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition.v1_0_0
                 SizeY = "10", //NOXLATE
                 Unit = LengthUnitType.Points
             };
-            sym.SetForegroundColor(Color.Black);
+            sym.SetForegroundColor(ColorInfo.Black);
             return sym;
         }
 
@@ -371,7 +371,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition.v1_0_0
             ILineRule lr = new LineRuleType()
             {
                 LegendLabel = "",
-                Items = new System.ComponentModel.BindingList<StrokeType>()
+                Items = new List<StrokeType>()
             };
             lr.AddStroke(CreateDefaultStroke());
             return lr;
@@ -387,11 +387,11 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition.v1_0_0
             return new TextSymbolType()
             {
                 AdvancedPlacement = null,
-                BackgroundColor = Utils.SerializeHTMLColor(Color.White, true),
+                BackgroundColor = Utils.SerializeHTMLColor(ColorInfo.White, true),
                 BackgroundStyle = BackgroundStyleType.Transparent,
                 Bold = "false", //NOXLATE
                 FontName = "Arial", //NOXLATE
-                ForegroundColor = Utils.SerializeHTMLColor(Color.Black, true),
+                ForegroundColor = Utils.SerializeHTMLColor(ColorInfo.Black, true),
                 HorizontalAlignment = "'Center'", //NOXLATE
                 Italic = "false", //NOXLATE
                 Rotation = "0", //NOXLATE
@@ -427,7 +427,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition.v1_0_0
                 LegendLabel = string.Empty,
                 CompositeSymbolization = new CompositeSymbolization()
                 {
-                    SymbolInstance = new System.ComponentModel.BindingList<SymbolInstance>()
+                    SymbolInstance = new List<SymbolInstance>()
                 }
             };
 #endif
@@ -440,7 +440,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition.v1_0_0
 #else
             var cts = new CompositeTypeStyle()
             {
-                CompositeRule = new System.ComponentModel.BindingList<CompositeRule>(),
+                CompositeRule = new List<CompositeRule>(),
 #if LDF_110 || LDF_120
 #else
                 ShowInLegend = true,

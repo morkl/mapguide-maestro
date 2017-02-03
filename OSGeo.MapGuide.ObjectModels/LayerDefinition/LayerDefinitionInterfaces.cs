@@ -26,7 +26,6 @@ using OSGeo.MapGuide.ObjectModels.WatermarkDefinition;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 
 #pragma warning disable 0108
 
@@ -293,7 +292,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition
         /// <param name="background"></param>
         /// <param name="foreground"></param>
         /// <returns></returns>
-        IFill CreateFill(string pattern, System.Drawing.Color background, System.Drawing.Color foreground);
+        IFill CreateFill(string pattern, ColorInfo background, ColorInfo foreground);
 
         /// <summary>
         /// Creates a default line rule
@@ -312,7 +311,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition
         /// </summary>
         /// <param name="color"></param>
         /// <returns></returns>
-        IStroke CreateStroke(System.Drawing.Color color);
+        IStroke CreateStroke(ColorInfo color);
 
         /// <summary>
         /// Creates a vector scale range
@@ -2184,7 +2183,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition
         /// </summary>
         /// <param name="sym">The sym.</param>
         /// <param name="c">The c.</param>
-        public static void SetBlockColor(this IBlockSymbol sym, Color c)
+        public static void SetBlockColor(this IBlockSymbol sym, ColorInfo c)
         {
             Check.ArgumentNotNull(sym, nameof(sym));
             sym.BlockColor = Utils.SerializeHTMLColor(c, true);
@@ -2195,7 +2194,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition
         /// </summary>
         /// <param name="sym">The sym.</param>
         /// <param name="c">The c.</param>
-        public static void SetLayerColor(this IBlockSymbol sym, Color c)
+        public static void SetLayerColor(this IBlockSymbol sym, ColorInfo c)
         {
             Check.ArgumentNotNull(sym, nameof(sym));
             sym.LayerColor = Utils.SerializeHTMLColor(c, true);
@@ -2206,7 +2205,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition
         /// </summary>
         /// <param name="sym"></param>
         /// <param name="f"></param>
-        public static void Apply(this IFontSymbol sym, Font f)
+        public static void Apply(this IFontSymbol sym, FontInfo f)
         {
             Check.ArgumentNotNull(sym, nameof(sym));
             sym.FontName = f.Name;
@@ -2220,7 +2219,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition
         /// </summary>
         /// <param name="sym">The sym.</param>
         /// <param name="c">The c.</param>
-        public static void SetForegroundColor(this IFontSymbol sym, Color c)
+        public static void SetForegroundColor(this IFontSymbol sym, ColorInfo c)
         {
             Check.ArgumentNotNull(sym, nameof(sym));
             sym.ForegroundColor = Utils.SerializeHTMLColor(c, true);
@@ -2318,7 +2317,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition
         /// </summary>
         /// <param name="sym">The sym.</param>
         /// <param name="c">The c.</param>
-        public static void SetFillColor(this IW2DSymbol sym, Color c)
+        public static void SetFillColor(this IW2DSymbol sym, ColorInfo c)
         {
             Check.ArgumentNotNull(sym, nameof(sym));
             sym.FillColor = Utils.SerializeHTMLColor(c, true);
@@ -2329,7 +2328,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition
         /// </summary>
         /// <param name="sym">The sym.</param>
         /// <param name="c">The c.</param>
-        public static void SetLineColor(this IW2DSymbol sym, Color c)
+        public static void SetLineColor(this IW2DSymbol sym, ColorInfo c)
         {
             Check.ArgumentNotNull(sym, nameof(sym));
             sym.LineColor = Utils.SerializeHTMLColor(c, true);
@@ -2340,7 +2339,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition
         /// </summary>
         /// <param name="sym">The sym.</param>
         /// <param name="c">The c.</param>
-        public static void SetTextColor(this IW2DSymbol sym, Color c)
+        public static void SetTextColor(this IW2DSymbol sym, ColorInfo c)
         {
             Check.ArgumentNotNull(sym, nameof(sym));
             sym.TextColor = Utils.SerializeHTMLColor(c, true);
@@ -2351,7 +2350,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition
         /// </summary>
         /// <param name="sym">The sym.</param>
         /// <param name="c">The c.</param>
-        public static void SetForegroundColor(this ITextSymbol sym, Color c)
+        public static void SetForegroundColor(this ITextSymbol sym, ColorInfo c)
         {
             Check.ArgumentNotNull(sym, nameof(sym));
             sym.ForegroundColor = Utils.SerializeHTMLColor(c, true);
@@ -2362,7 +2361,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition
         /// </summary>
         /// <param name="sym">The sym.</param>
         /// <param name="c">The c.</param>
-        public static void SetBackgroundColor(this ITextSymbol sym, Color c)
+        public static void SetBackgroundColor(this ITextSymbol sym, ColorInfo c)
         {
             Check.ArgumentNotNull(sym, nameof(sym));
             sym.BackgroundColor = Utils.SerializeHTMLColor(c, true);
@@ -2373,7 +2372,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition
         /// </summary>
         /// <param name="sym"></param>
         /// <param name="f"></param>
-        public static void Apply(this ITextSymbol sym, Font f)
+        public static void Apply(this ITextSymbol sym, FontInfo f)
         {
             Check.ArgumentNotNull(sym, nameof(sym));
             sym.FontName = f.Name;
@@ -2387,7 +2386,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition
         /// </summary>
         /// <param name="fil">The fil.</param>
         /// <param name="c">The c.</param>
-        public static void SetBackgroundColor(this IFill fil, Color c)
+        public static void SetBackgroundColor(this IFill fil, ColorInfo c)
         {
             Check.ArgumentNotNull(fil, nameof(fil));
             fil.BackgroundColor = Utils.SerializeHTMLColor(c, true);
@@ -2398,7 +2397,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition
         /// </summary>
         /// <param name="fil">The fil.</param>
         /// <param name="c">The c.</param>
-        public static void SetForegroundColor(this IFill fil, Color c)
+        public static void SetForegroundColor(this IFill fil, ColorInfo c)
         {
             Check.ArgumentNotNull(fil, nameof(fil));
             fil.ForegroundColor = Utils.SerializeHTMLColor(c, true);
@@ -2409,7 +2408,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition
         /// </summary>
         /// <param name="style">The style.</param>
         /// <param name="c">The c.</param>
-        public static void SetTransparencyColor(this IGridColorStyle style, Color c)
+        public static void SetTransparencyColor(this IGridColorStyle style, ColorInfo c)
         {
             Check.ArgumentNotNull(style, nameof(style));
             style.TransparencyColor = Utils.SerializeHTMLColor(c, true);
@@ -2420,7 +2419,7 @@ namespace OSGeo.MapGuide.ObjectModels.LayerDefinition
         /// </summary>
         /// <param name="style">The style.</param>
         /// <param name="c">The c.</param>
-        public static void SetDefaultColor(this IGridSurfaceStyle style, Color c)
+        public static void SetDefaultColor(this IGridSurfaceStyle style, ColorInfo c)
         {
             Check.ArgumentNotNull(style, nameof(style));
             style.DefaultColor = Utils.SerializeHTMLColor(c, true);

@@ -23,7 +23,7 @@
 using Maestro.Editors.Common;
 using OSGeo.MapGuide.ObjectModels.FeatureSource;
 using System;
-using System.Collections.Specialized;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 
@@ -48,18 +48,13 @@ namespace Maestro.Editors.FeatureSource.Providers.Odbc.SubEditors
             _dsnNames = service.CurrentConnection.FeatureService.GetConnectionPropertyValues("OSGeo.ODBC", "DataSourceName", string.Empty); //NOXLATE
         }
 
-        private void OnConnectionChanged()
-        {
-            var handler = this.ConnectionChanged;
-            if (handler != null)
-                handler(this, EventArgs.Empty);
-        }
+        private void OnConnectionChanged() => ConnectionChanged?.Invoke(this, EventArgs.Empty);
 
-        public NameValueCollection ConnectionProperties
+        public IDictionary<string, string> ConnectionProperties
         {
             get
             {
-                var values = new NameValueCollection();
+                var values = new Dictionary<string, string>();
                 if (!string.IsNullOrEmpty(txtDSN.Text))
                     values["DataSourceName"] = txtDSN.Text; //NOXLATE
                 return values;
@@ -72,15 +67,9 @@ namespace Maestro.Editors.FeatureSource.Providers.Odbc.SubEditors
 
         public event EventHandler ConnectionChanged;
 
-        public Control Content
-        {
-            get { return this; }
-        }
+        public Control Content => this;
 
-        public NameValueCollection Get64BitConnectionProperties()
-        {
-            return this.ConnectionProperties;
-        }
+        public IDictionary<string, string> Get64BitConnectionProperties() => ConnectionProperties;
 
         private void btnBrowseDsn_Click(object sender, EventArgs e)
         {
@@ -100,12 +89,7 @@ namespace Maestro.Editors.FeatureSource.Providers.Odbc.SubEditors
             }
         }
 
-        private void OnRequestDocumentReset()
-        {
-            var handler = this.RequestDocumentReset;
-            if (handler != null)
-                handler(this, EventArgs.Empty);
-        }
+        private void OnRequestDocumentReset() => RequestDocumentReset?.Invoke(this, EventArgs.Empty);
 
         public event EventHandler RequestDocumentReset;
     }

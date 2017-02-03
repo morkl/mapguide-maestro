@@ -116,7 +116,7 @@ namespace Maestro.Editors.LayerDefinition.Vector.Scales
             this.ThemeCategory = themeCategory;
 
             if (item is IEnumerable<IStroke>)
-                m_line = new List<IStroke>((IEnumerable<IStroke>)item);
+                m_line = new System.Collections.Generic.List<IStroke>((IEnumerable<IStroke>)item);
             else
                 m_line = null;
         }
@@ -291,7 +291,7 @@ namespace Maestro.Editors.LayerDefinition.Vector.Scales
             else if (isLine)
             {
                 m_origLine = m_line;
-                m_editLine = (m_line == null) ? new List<IStroke>() : LayerElementCloningUtil.CloneStrokes(m_line);
+                m_editLine = (m_line == null) ? new System.Collections.Generic.List<IStroke>() : LayerElementCloningUtil.CloneStrokes(m_line);
 
                 var lfse = new LineFeatureStyleEditor(m_owner.Editor, m_owner.SelectedClass, m_owner.FeatureSourceId, factory, prev);
                 uc = lfse;

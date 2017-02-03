@@ -22,6 +22,7 @@
 
 using Maestro.Editors.Common;
 using Maestro.Shared.UI;
+using OSGeo.MapGuide.MaestroAPI;
 using OSGeo.MapGuide.ObjectModels.PrintLayout;
 using System.ComponentModel;
 
@@ -45,24 +46,24 @@ namespace Maestro.Editors.PrintLayout
             _layout = (IPrintLayout)service.GetEditedResource();
 
             //ColorComboBox requires custom databinding
-            cmbBgColor.CurrentColor = _layout.PageProperties.BackgroundColor;
+            cmbBgColor.CurrentColor = Utility.ToColor(_layout.PageProperties.BackgroundColor);
             cmbBgColor.SelectedIndexChanged += (sender, e) =>
             {
-                _layout.PageProperties.BackgroundColor = cmbBgColor.CurrentColor;
+                _layout.PageProperties.BackgroundColor = Utility.FromColor(cmbBgColor.CurrentColor);
             };
             _layout.LayoutProperties.PropertyChanged += (sender, e) =>
             {
                 OnResourceChanged();
             };
 
-            CheckBoxBinder.BindChecked(chkCustomLogos, _layout.LayoutProperties, "ShowCustomLogos");
-            CheckBoxBinder.BindChecked(chkCustomText, _layout.LayoutProperties, "ShowCustomText");
-            CheckBoxBinder.BindChecked(chkDateTime, _layout.LayoutProperties, "ShowDateTime");
-            CheckBoxBinder.BindChecked(chkLegend, _layout.LayoutProperties, "ShowLegend");
-            CheckBoxBinder.BindChecked(chkNorthArrow, _layout.LayoutProperties, "ShowNorthArrow");
-            CheckBoxBinder.BindChecked(chkScaleBar, _layout.LayoutProperties, "ShowScaleBar");
-            CheckBoxBinder.BindChecked(chkTitle, _layout.LayoutProperties, "ShowTitle");
-            CheckBoxBinder.BindChecked(chkURL, _layout.LayoutProperties, "ShowURL");
+            CheckBoxBinder.BindChecked(chkCustomLogos, _layout.LayoutProperties, nameof(_layout.LayoutProperties.ShowCustomLogos));
+            CheckBoxBinder.BindChecked(chkCustomText, _layout.LayoutProperties, nameof(_layout.LayoutProperties.ShowCustomText));
+            CheckBoxBinder.BindChecked(chkDateTime, _layout.LayoutProperties, nameof(_layout.LayoutProperties.ShowDateTime));
+            CheckBoxBinder.BindChecked(chkLegend, _layout.LayoutProperties, nameof(_layout.LayoutProperties.ShowLegend));
+            CheckBoxBinder.BindChecked(chkNorthArrow, _layout.LayoutProperties, nameof(_layout.LayoutProperties.ShowNorthArrow));
+            CheckBoxBinder.BindChecked(chkScaleBar, _layout.LayoutProperties, nameof(_layout.LayoutProperties.ShowScaleBar));
+            CheckBoxBinder.BindChecked(chkTitle, _layout.LayoutProperties, nameof(_layout.LayoutProperties.ShowTitle));
+            CheckBoxBinder.BindChecked(chkURL, _layout.LayoutProperties, nameof(_layout.LayoutProperties.ShowURL));
         }
     }
 }

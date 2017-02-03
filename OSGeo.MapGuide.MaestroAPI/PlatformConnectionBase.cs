@@ -41,6 +41,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
 using System.Text;
+using System.Xml;
 using ObjCommon = OSGeo.MapGuide.ObjectModels.Common;
 
 namespace OSGeo.MapGuide.MaestroAPI
@@ -170,7 +171,8 @@ namespace OSGeo.MapGuide.MaestroAPI
         public virtual System.IO.MemoryStream SerializeObject(object o)
         {
             MemoryStream ms = new MemoryStream();
-            GetSerializer(o.GetType()).Serialize(new Utf8XmlWriter(ms), o);
+            //GetSerializer(o.GetType()).Serialize(new Utf8XmlWriter(ms), o);
+            GetSerializer(o.GetType()).Serialize(XmlWriter.Create(ms), o);
             return Utility.RemoveUTF8BOM(ms);
         }
 
@@ -253,7 +255,7 @@ namespace OSGeo.MapGuide.MaestroAPI
         /// of this connection via the <see cref="T:OSGeo.MapGuide.MaestroAPI.ConnectionProviderRegistry"/>
         /// </summary>
         /// <returns></returns>
-        public abstract NameValueCollection CloneParameters { get; }
+        public abstract IDictionary<string, string> CloneParameters { get; }
 
         /// <summary>
         /// Gets the current SessionID.

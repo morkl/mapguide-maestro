@@ -955,10 +955,10 @@ namespace OSGeo.MapGuide.ObjectModels.ApplicationDefinition
         /// </summary>
         /// <param name="ext"></param>
         /// <returns></returns>
-        public static NameValueCollection GetAllValues(this IExtensibleElement ext)
+        public static IDictionary<string, string> GetAllValues(this IExtensibleElement ext)
         {
             Check.ArgumentNotNull(ext, nameof(ext));
-            NameValueCollection values = new NameValueCollection();
+            var values = new Dictionary<string, string>();
             foreach (var el in ext.Extension.Content)
             {
                 values.Add(el.Name, el.InnerText);
@@ -971,16 +971,16 @@ namespace OSGeo.MapGuide.ObjectModels.ApplicationDefinition
         /// </summary>
         /// <param name="ext"></param>
         /// <param name="values"></param>
-        public static void SetAllValues(this IExtensibleElement ext, NameValueCollection values)
+        public static void SetAllValues(this IExtensibleElement ext, IDictionary<string, string> values)
         {
             Check.ArgumentNotNull(ext, nameof(ext));
             Check.ArgumentNotNull(values, nameof(values));
 
             var elements = new List<XmlElement>();
-            foreach (string name in values.Keys)
+            foreach (var kvp in values)
             {
-                var value = values[name];
-                var rid = AppDefDocument.Instance.CreateElement(name);
+                var value = kvp.Value;
+                var rid = AppDefDocument.Instance.CreateElement(kvp.Key);
                 rid.InnerText = value;
                 elements.Add(rid);
             }

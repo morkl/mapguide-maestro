@@ -32,7 +32,7 @@ namespace Maestro.Editors.FeatureSource.Providers.Odbc.OverrideEditor
 
             var schema = doc.GetSchema(schemaName);
             Dictionary<string, TableOverrideItem> tables = new Dictionary<string, TableOverrideItem>();
-            List<TableOverrideItem> existing = new List<TableOverrideItem>();
+            System.Collections.Generic.List<TableOverrideItem> existing = new System.Collections.Generic.List<TableOverrideItem>();
             foreach (var tbl in doc.GetMappingsForSchema(schemaName))
             {
                 var cls = doc.GetClass(schemaName, tbl.ClassName);
@@ -81,7 +81,7 @@ namespace Maestro.Editors.FeatureSource.Providers.Odbc.OverrideEditor
         {
             get
             {
-                var items = new List<OdbcTableItem>();
+                var items = new System.Collections.Generic.List<OdbcTableItem>();
                 foreach (DataGridViewRow row in grdTables.Rows)
                 {
                     if (row.Cells[0].Value != null && (bool)row.Cells[0].Value)

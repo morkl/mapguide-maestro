@@ -74,7 +74,7 @@ namespace OSGeo.MapGuide.MaestroAPI.Native
 
         //This is the constructor used by ConnectionProviderRegistry.CreateConnection
 
-        internal LocalNativeConnection(NameValueCollection initParams)
+        internal LocalNativeConnection(IDictionary<string, string> initParams)
             : this()
         {
             if (initParams[PARAM_SESSION] != null)
@@ -105,11 +105,11 @@ namespace OSGeo.MapGuide.MaestroAPI.Native
 
         public override string ProviderName => "Maestro.LocalNative"; //NOXLATE
 
-        public override NameValueCollection CloneParameters
+        public override IDictionary<string, string> CloneParameters
         {
             get
             {
-                var nvc = new NameValueCollection();
+                var nvc = new Dictionary<string, string>();
                 nvc[PARAM_CONFIG] = m_webconfig;
                 nvc[CommandLineArguments.Provider] = this.ProviderName;
                 nvc[CommandLineArguments.Session] = this.SessionID;
@@ -1117,7 +1117,7 @@ namespace OSGeo.MapGuide.MaestroAPI.Native
 
         public override IServerConnection Clone()
         {
-            var initP = new NameValueCollection();
+            var initP = new Dictionary<string, string>();
             initP[PARAM_SESSION] = this.SessionID;
             return new LocalNativeConnection(initP);
         }

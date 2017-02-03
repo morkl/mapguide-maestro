@@ -67,7 +67,7 @@ namespace Maestro.Editors.TileSetDefinition
 
         private IEnumerable<object> GetSelectedTiledLayerItems()
         {
-            var result = new List<object>();
+            var result = new System.Collections.Generic.List<object>();
             var nodes = trvBaseLayers.SelectedNodes;
             if (nodes != null)
             {
@@ -101,7 +101,7 @@ namespace Maestro.Editors.TileSetDefinition
 
         private void btnRemoveBaseLayerGroup_Click(object sender, EventArgs e)
         {
-            var remove = new List<BaseLayerGroupItem>();
+            var remove = new System.Collections.Generic.List<BaseLayerGroupItem>();
             foreach (var item in GetSelectedTiledLayerItems())
             {
                 var group = item as BaseLayerGroupItem;
@@ -520,7 +520,7 @@ namespace Maestro.Editors.TileSetDefinition
             CommonPropertyCtrl commCtrl = new CommonPropertyCtrl();
             commCtrl.Dock = DockStyle.Fill;
 
-            List<object> values = new List<object>();
+            System.Collections.Generic.List<object> values = new System.Collections.Generic.List<object>();
             for (int i = 0; i < nodes.Count; i++)
             {
                 var bgrp = nodes[i].Tag as BaseLayerGroupItem;

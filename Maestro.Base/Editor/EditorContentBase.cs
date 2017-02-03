@@ -182,7 +182,7 @@ namespace Maestro.Base.Editor
                 {
                     BusyWaitDelegate del = () =>
                     {
-                        var errors = new List<ValidationIssue>(ValidateEditedResource()).ToArray();
+                        var errors = new System.Collections.Generic.List<ValidationIssue>(ValidateEditedResource()).ToArray();
                         return errors;
                     };
 

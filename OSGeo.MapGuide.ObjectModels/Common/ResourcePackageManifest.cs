@@ -21,6 +21,8 @@
 #endregion Disclaimer / License
 
 
+using System.Collections.Generic;
+
 namespace OSGeo.MapGuide.ObjectModels.Common
 {
     partial class ResourcePackageManifestOperationsOperationParameters
@@ -53,7 +55,7 @@ namespace OSGeo.MapGuide.ObjectModels.Common
         public void SetParameterValue(string name, string value)
         {
             if (this.parameterField == null)
-                this.parameterField = new System.ComponentModel.BindingList<ResourcePackageManifestOperationsOperationParametersParameter>();
+                this.parameterField = new List<ResourcePackageManifestOperationsOperationParametersParameter>();
 
             foreach (var p in this.parameterField)
             {

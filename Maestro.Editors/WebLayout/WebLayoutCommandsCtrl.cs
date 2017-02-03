@@ -88,7 +88,7 @@ namespace Maestro.Editors.WebLayout
 
         private ICommand[] GetCustomCommands()
         {
-            var cmds = new List<ICommand>();
+            var cmds = new System.Collections.Generic.List<ICommand>();
             foreach (var c in _wl.CommandSet.Commands)
             {
                 var type = c.GetType();
@@ -110,7 +110,7 @@ namespace Maestro.Editors.WebLayout
 
         private ICommand[] GetSelectedCustomCommands()
         {
-            var cmds = new List<ICommand>();
+            var cmds = new System.Collections.Generic.List<ICommand>();
             foreach (DataGridViewRow row in grdCommands.SelectedRows)
             {
                 var dec = (CommandDecorator)row.DataBoundItem;
@@ -316,7 +316,7 @@ namespace Maestro.Editors.WebLayout
             }
             else
             {
-                List<string> selectedCmds = new List<string>();
+                System.Collections.Generic.List<string> selectedCmds = new System.Collections.Generic.List<string>();
                 foreach (DataGridViewRow row in grdCommands.SelectedRows)
                 {
                     var cmd = ((CommandDecorator)row.DataBoundItem).DecoratedInstance;

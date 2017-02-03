@@ -170,14 +170,14 @@ namespace Maestro.MapViewer
 #endif
 
         private int _viewHistoryIndex;
-        private List<MapViewHistoryEntry> _viewHistory;
+        private System.Collections.Generic.List<MapViewHistoryEntry> _viewHistory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MapViewer"/> class.
         /// </summary>
         public MapViewer()
         {
-            _viewHistory = new List<MapViewHistoryEntry>();
+            _viewHistory = new System.Collections.Generic.List<MapViewHistoryEntry>();
             _viewHistoryIndex = -1;
             this.ShowVertexCoordinatesWhenDigitizing = false;
             this.FeatureTooltipsEnabled = false;
@@ -855,7 +855,7 @@ namespace Maestro.MapViewer
 
         private Point dPtStart; //Rectangle, Line, Circle
         private Point dPtEnd; //Rectangle, Line, Circle
-        private List<Point> dPath = new List<Point>(); //LineString, Polygon
+        private System.Collections.Generic.List<Point> dPath = new System.Collections.Generic.List<Point>(); //LineString, Polygon
 
         private Delegate _digitzationCallback;
 
@@ -1049,7 +1049,7 @@ namespace Maestro.MapViewer
             cb(mapPt.X, mapPt.Y, radius);
         }
 
-        private void OnPolygonDigitized(List<Point> path)
+        private void OnPolygonDigitized(System.Collections.Generic.List<Point> path)
         {
             double[,] coords = new double[path.Count, 2];
             for (int i = 0; i < path.Count; i++)
@@ -1074,7 +1074,7 @@ namespace Maestro.MapViewer
             }
         }
 
-        private void OnLineStringDigitized(List<Point> path)
+        private void OnLineStringDigitized(System.Collections.Generic.List<Point> path)
         {
             double[,] coords = new double[path.Count, 2];
             for (int i = 0; i < path.Count; i++)
@@ -2128,7 +2128,7 @@ namespace Maestro.MapViewer
 
         private static string[] GetAllLayerNames(RuntimeMap map)
         {
-            var names = new List<string>();
+            var names = new System.Collections.Generic.List<string>();
             for (int i = 0; i < map.Layers.Count; i++)
             {
                 names.Add(map.Layers[i].Name);

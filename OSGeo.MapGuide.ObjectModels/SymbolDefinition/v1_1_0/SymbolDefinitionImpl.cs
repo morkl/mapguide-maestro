@@ -148,10 +148,10 @@ namespace OSGeo.MapGuide.ObjectModels.SymbolDefinition.v1_0_0
         {
             var simpleSym = new SimpleSymbolDefinition()
             {
-                Graphics = new System.ComponentModel.BindingList<GraphicBase>(),
+                Graphics = new List<GraphicBase>(),
                 ParameterDefinition = new ParameterDefinition()
                 {
-                    Parameter = new System.ComponentModel.BindingList<Parameter>()
+                    Parameter = new List<Parameter>()
                 }
             };
             return simpleSym;
@@ -754,7 +754,7 @@ namespace OSGeo.MapGuide.ObjectModels.SymbolDefinition.v1_0_0
         {
             var sym = new CompoundSymbolDefinition()
             {
-                SimpleSymbol = new System.ComponentModel.BindingList<SimpleSymbol>(),
+                SimpleSymbol = new List<SimpleSymbol>(),
             };
             return sym;
         }

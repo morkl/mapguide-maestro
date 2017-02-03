@@ -22,6 +22,7 @@
 
 using OSGeo.MapGuide.MaestroAPI;
 using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -54,14 +55,9 @@ namespace Maestro.Editors.FeatureSource.Providers.Odbc.SubEditors
             resDataCtrl.Init(service);
         }
 
-        private void OnConnectionChanged()
-        {
-            var handler = this.ConnectionChanged;
-            if (handler != null)
-                handler(this, EventArgs.Empty);
-        }
+        private void OnConnectionChanged() => ConnectionChanged?.Invoke(this, EventArgs.Empty);
 
-        public NameValueCollection ConnectionProperties
+        public IDictionary<string, string> ConnectionProperties
         {
             get
             {
@@ -70,7 +66,7 @@ namespace Maestro.Editors.FeatureSource.Providers.Odbc.SubEditors
             set
             {
                 var inner = new System.Data.Odbc.OdbcConnectionStringBuilder();
-                if (value["ConnectionString"] == null) //NOXLATE
+                if (!value.ContainsKey("ConnectionString")) //NOXLATE
                     throw new InvalidOperationException(string.Format(Strings.FdoConnectionStringComponentNotFound, "ConnectionString")); //NOXLATE
 
                 inner.ConnectionString = value["ConnectionString"]; //NOXLATE
@@ -83,14 +79,11 @@ namespace Maestro.Editors.FeatureSource.Providers.Odbc.SubEditors
             }
         }
 
-        public NameValueCollection Get64BitConnectionProperties()
-        {
-            return GetConnectionPropertiesInternal(true);
-        }
+        public IDictionary<string, string> Get64BitConnectionProperties() => GetConnectionPropertiesInternal(true);
 
-        private NameValueCollection GetConnectionPropertiesInternal(bool use64Bit)
+        private IDictionary<string, string> GetConnectionPropertiesInternal(bool use64Bit)
         {
-            var values = new NameValueCollection();
+            var values = new Dictionary<string, string>();
 
             if (string.IsNullOrEmpty(resDataCtrl.MarkedFile))
                 return values;
@@ -133,10 +126,7 @@ namespace Maestro.Editors.FeatureSource.Providers.Odbc.SubEditors
             return null;
         }
 
-        public Control Content
-        {
-            get { return this; }
-        }
+        public Control Content => this;
 
         public event EventHandler RequestDocumentReset;
     }

@@ -217,7 +217,7 @@ namespace Maestro.Editors.Fusion
                 node = doc.SelectSingleNode("//WidgetType/Extension"); //NOXLATE
                 if (node != null)
                 {
-                    List<XmlElement> elements = new List<XmlElement>();
+                    System.Collections.Generic.List<XmlElement> elements = new System.Collections.Generic.List<XmlElement>();
                     //foreach (XmlNode child in node.ChildNodes)
                     for (int i = 0; i < node.ChildNodes.Count; i++)
                     {

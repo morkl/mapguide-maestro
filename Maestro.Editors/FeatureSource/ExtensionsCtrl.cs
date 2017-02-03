@@ -374,7 +374,7 @@ namespace Maestro.Editors.FeatureSource
 
         private string[] GetAllClassNames()
         {
-            var names = new List<string>();
+            var names = new System.Collections.Generic.List<string>();
             var schemaNames = _edSvc.CurrentConnection.FeatureService.GetSchemas(_fs.ResourceID);
             foreach (var sn in schemaNames)
             {

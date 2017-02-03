@@ -99,18 +99,18 @@ namespace Maestro.Editors.MapDefinition
             TextBoxBinder.BindText(txtCoordinateSystem, _map, "CoordinateSystem");
 
             //ColorComboBox requires custom databinding
-            cmbBackgroundColor.CurrentColor = _map.BackgroundColor;
+            cmbBackgroundColor.CurrentColor = Utility.ToColor(_map.BackgroundColor);
             cmbBackgroundColor.SelectedIndexChanged += (sender, e) =>
             {
-                _map.BackgroundColor = cmbBackgroundColor.CurrentColor;
+                _map.BackgroundColor = Utility.FromColor(cmbBackgroundColor.CurrentColor);
             };
             PropertyChangedEventHandler mapChanged = (sender, e) =>
             {
-                if (e.PropertyName == "BackgroundColor")
+                if (e.PropertyName == nameof(_map.BackgroundColor))
                 {
-                    cmbBackgroundColor.CurrentColor = _map.BackgroundColor;
+                    cmbBackgroundColor.CurrentColor = Utility.ToColor(_map.BackgroundColor);
                 }
-                else if (e.PropertyName == "Extents")
+                else if (e.PropertyName == nameof(_map.Extents))
                 {
                     UpdateExtentsFromMap();
                 }

@@ -79,7 +79,7 @@ namespace OSGeo.MapGuide.MaestroAPI.Tests
         [Test]
         public void Utility_ToConnectionString()
         {
-            var nvc = new NameValueCollection();
+            var nvc = new Dictionary<string, string>();
             nvc["Foo"] = "Bar";
             nvc["Baz"] = "Snafu";
             Assert.AreEqual("Foo=Bar;Baz=Snafu", Utility.ToConnectionString(nvc));

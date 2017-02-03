@@ -46,11 +46,11 @@ namespace Maestro.Base.Commands.SiteExplorer
             var prg = new ProgressDialog();
             var results = (DependencySet)prg.RunOperationAsync(wb, DoBackgroundWorker, items, conn);
 
-            var downlist = new List<string>(results.DownstreamDependencies);
+            var downlist = new System.Collections.Generic.List<string>(results.DownstreamDependencies);
             downlist.Sort();
-            var uplist = new List<string>(results.UpstreamDependencies);
+            var uplist = new System.Collections.Generic.List<string>(results.UpstreamDependencies);
             uplist.Sort();
-            var selResources = new List<string>(results.SelectedResources);
+            var selResources = new System.Collections.Generic.List<string>(results.SelectedResources);
             new ResourceDependencyListDialog(selResources, downlist, uplist).Show(wb);
         }
 

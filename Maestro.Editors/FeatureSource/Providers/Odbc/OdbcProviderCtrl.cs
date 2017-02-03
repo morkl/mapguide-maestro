@@ -57,7 +57,7 @@ namespace Maestro.Editors.FeatureSource.Providers.Odbc
         private IEditorService _service;
         private IFeatureSource _fs;
 
-        private bool Use64BitDriver { get { return chkUse64Bit.Visible && chkUse64Bit.Checked; } }
+        private bool Use64BitDriver => chkUse64Bit.Visible && chkUse64Bit.Checked;
 
         private void InternalConnectionChanged(object sender, EventArgs e)
         {

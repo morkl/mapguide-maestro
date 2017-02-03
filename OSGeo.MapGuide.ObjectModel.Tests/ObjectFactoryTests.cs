@@ -345,7 +345,7 @@ namespace OSGeo.MapGuide.ObjectModels.Tests
         [Test]
         public void CreateFeatureSourceTestWithParameters()
         {
-            var param = new NameValueCollection();
+            var param = new Dictionary<string, string>();
             param["File"] = "C:\\Test.sdf";
             param["ReadOnly"] = "TRUE";
 

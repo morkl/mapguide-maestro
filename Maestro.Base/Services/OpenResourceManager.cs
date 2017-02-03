@@ -51,7 +51,7 @@ namespace Maestro.Base.Services
         /// </summary>
         public IEditorViewContent[] OpenEditors
         {
-            get { return new List<IEditorViewContent>(_openItems.Values).ToArray(); }
+            get { return new System.Collections.Generic.List<IEditorViewContent>(_openItems.Values).ToArray(); }
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Maestro.Base.Services
         public void CloseEditorsExceptFor(IServerConnection conn, string resourceId, bool discardChanges)
         {
             string key = ComputeResourceKey(resourceId, conn);
-            var eds = new List<IEditorViewContent>(_openItems.Values);
+            var eds = new System.Collections.Generic.List<IEditorViewContent>(_openItems.Values);
             if (_openItems.ContainsKey(key))
                 eds.Remove(_openItems[key]);
 

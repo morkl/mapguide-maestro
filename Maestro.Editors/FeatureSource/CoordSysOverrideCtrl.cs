@@ -53,7 +53,7 @@ namespace Maestro.Editors.FeatureSource
 
         private void UpdateSpatialContextList()
         {
-            grdOverrides.DataSource = new List<ISpatialContextInfo>(_fs.SupplementalSpatialContextInfo);
+            grdOverrides.DataSource = new System.Collections.Generic.List<ISpatialContextInfo>(_fs.SupplementalSpatialContextInfo);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -131,7 +131,7 @@ namespace Maestro.Editors.FeatureSource
             {
                 if (MessageBox.Show(Strings.QuestionResetFsOverrideList, Strings.TitleQuestion, MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    var sco = new List<ISpatialContextInfo>(_fs.SupplementalSpatialContextInfo);
+                    var sco = new System.Collections.Generic.List<ISpatialContextInfo>(_fs.SupplementalSpatialContextInfo);
                     foreach (var s in sco)
                     {
                         _fs.RemoveSpatialContextOverride(s);

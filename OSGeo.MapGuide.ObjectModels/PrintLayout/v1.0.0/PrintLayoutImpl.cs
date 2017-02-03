@@ -219,20 +219,20 @@ namespace OSGeo.MapGuide.ObjectModels.PrintLayout.v1_0_0
     partial class PrintLayoutPageProperties : IPrintLayoutPageProperties
     {
         [XmlIgnore]
-        System.Drawing.Color IPrintLayoutPageProperties.BackgroundColor
+        ColorInfo IPrintLayoutPageProperties.BackgroundColor
         {
             get
             {
-                int r;
-                int g;
-                int b;
-                if (int.TryParse(this.BackgroundColor.Red, out r) &&
-                    int.TryParse(this.BackgroundColor.Green, out g) &&
-                    int.TryParse(this.BackgroundColor.Blue, out b))
+                byte r;
+                byte g;
+                byte b;
+                if (byte.TryParse(this.BackgroundColor.Red, out r) &&
+                    byte.TryParse(this.BackgroundColor.Green, out g) &&
+                    byte.TryParse(this.BackgroundColor.Blue, out b))
                 {
-                    return System.Drawing.Color.FromArgb(r, g, b);
+                    return ColorInfo.FromArgb(r, g, b);
                 }
-                return new System.Drawing.Color();
+                return ColorInfo.Color();
             }
             set
             {

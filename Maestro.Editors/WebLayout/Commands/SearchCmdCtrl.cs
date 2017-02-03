@@ -150,13 +150,13 @@ namespace Maestro.Editors.WebLayout.Commands
             base.UnsubscribeEventHandlers();
         }
 
-        private List<IMapLayer> _layers;
+        private System.Collections.Generic.List<IMapLayer> _layers;
 
         private void LoadLayers()
         {
             var map = (IMapDefinition)_edsvc.CurrentConnection.ResourceService.GetResource(_wl.Map.ResourceId);
 
-            _layers = new List<IMapLayer>(map.MapLayer);
+            _layers = new System.Collections.Generic.List<IMapLayer>(map.MapLayer);
         }
 
         private void OnWebMapLayoutPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -223,7 +223,7 @@ namespace Maestro.Editors.WebLayout.Commands
 
         private void btnBrowseLayer_Click(object sender, EventArgs e)
         {
-            var layers = new List<LayerItem>();
+            var layers = new System.Collections.Generic.List<LayerItem>();
             foreach (var l in _layers)
             {
                 layers.Add(new LayerItem() { Name = l.Name, ResourceId = l.ResourceId });

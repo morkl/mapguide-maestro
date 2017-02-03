@@ -758,7 +758,7 @@ namespace Maestro.Base.UI
             {
                 if (m_srslist == null)
                 {
-                    List<string> items = new List<string>();
+                    System.Collections.Generic.List<string> items = new System.Collections.Generic.List<string>();
                     foreach (OSGeo.MapGuide.MaestroAPI.CoordinateSystem.CoordinateSystemDefinitionBase c in m_connection.CoordinateSystemCatalog.Coordsys)
                     {
                         if (c.Code.StartsWith("EPSG:")) //NOXLATE
@@ -913,7 +913,7 @@ namespace Maestro.Base.UI
 
                 string resourceId = (ResourceIdentifier)e.Argument;
 
-                List<string> lst = new List<string>();
+                System.Collections.Generic.List<string> lst = new System.Collections.Generic.List<string>();
                 foreach (string s in m_connection.ResourceService.EnumerateResourceReferences(resourceId).ResourceId)
                     if (!lst.Contains(s))
                         lst.Add(s);
@@ -924,8 +924,8 @@ namespace Maestro.Base.UI
                     doc.Load(ms);
                 }
 
-                List<KeyValuePair<System.Xml.XmlNode, string>> refs = Utility.GetResourceIdPointers(doc);
-                List<string> r = new List<string>();
+                System.Collections.Generic.List<KeyValuePair<System.Xml.XmlNode, string>> refs = Utility.GetResourceIdPointers((System.Xml.XmlNode)doc);
+                System.Collections.Generic.List<string> r = new System.Collections.Generic.List<string>();
                 foreach (KeyValuePair<System.Xml.XmlNode, string> s in refs)
                     if (!r.Contains(s.Value))
                         r.Add(s.Value);
@@ -965,8 +965,8 @@ namespace Maestro.Base.UI
 
             OutReferences.Enabled = InReferences.Enabled = true;
 
-            List<string> l1 = ((object[])e.Result)[0] as List<string>;
-            List<string> l2 = ((object[])e.Result)[1] as List<string>;
+            System.Collections.Generic.List<string> l1 = ((object[])e.Result)[0] as System.Collections.Generic.List<string>;
+            System.Collections.Generic.List<string> l2 = ((object[])e.Result)[1] as System.Collections.Generic.List<string>;
 
             foreach (string s in l2)
             {

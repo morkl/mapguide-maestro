@@ -55,11 +55,11 @@ namespace OSGeo.MapGuide.MaestroAPI.Local
     {
         public event EventHandler SessionIDChanged; //Not used
 
-        public static LocalConnection Create(NameValueCollection initParams) => new LocalConnection(initParams);
+        public static LocalConnection Create(IDictionary<string, string> initParams) => new LocalConnection(initParams);
 
         private MgdServiceFactory _fact;
 
-        protected LocalConnection(NameValueCollection initParams)
+        protected LocalConnection(IDictionary<string, string> initParams)
             : base()
         {
             _fact = new MgdServiceFactory();
@@ -100,11 +100,11 @@ namespace OSGeo.MapGuide.MaestroAPI.Local
 
         public override string ProviderName => PROVIDER_NAME;
 
-        public override NameValueCollection CloneParameters
+        public override IDictionary<string, string> CloneParameters
         {
             get
             {
-                return new NameValueCollection()
+                return new Dictionary<string, string>()
                 {
                     { PARAM_CONFIG, _configFile }
                 };
@@ -242,7 +242,7 @@ namespace OSGeo.MapGuide.MaestroAPI.Local
         {
             return new ResourceReferenceList()
             {
-                ResourceId = new System.ComponentModel.BindingList<string>()
+                ResourceId = new List<string>()
             };
         }
 

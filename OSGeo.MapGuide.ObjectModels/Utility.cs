@@ -24,7 +24,6 @@ using OSGeo.MapGuide.ObjectModels.IO;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Drawing;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
@@ -41,24 +40,24 @@ namespace OSGeo.MapGuide.ObjectModels
         /// </summary>
         /// <param name="color">The HTML representation of the color</param>
         /// <returns>The .Net color structure that matches the color</returns>
-        public static Color ParseHTMLColor(string color)
+        public static ColorInfo ParseHTMLColor(string color)
         {
             if (color.Length == 8)
             {
-                int a = int.Parse(color.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
-                int r = int.Parse(color.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
-                int g = int.Parse(color.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
-                int b = int.Parse(color.Substring(6, 2), System.Globalization.NumberStyles.HexNumber);
+                var a = byte.Parse(color.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
+                var r = byte.Parse(color.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
+                var g = byte.Parse(color.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
+                var b = byte.Parse(color.Substring(6, 2), System.Globalization.NumberStyles.HexNumber);
 
-                return Color.FromArgb(a, r, g, b);
+                return ColorInfo.FromArgb(a, r, g, b);
             }
             else if (color.Length == 6)
             {
-                int r = int.Parse(color.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
-                int g = int.Parse(color.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
-                int b = int.Parse(color.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
+                var r = byte.Parse(color.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
+                var g = byte.Parse(color.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
+                var b = byte.Parse(color.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
 
-                return Color.FromArgb(r, g, b);
+                return ColorInfo.FromArgb(r, g, b);
             }
             else
                 throw new Exception(string.Format(Strings.ErrorBadHtmlColor, color));
@@ -69,24 +68,24 @@ namespace OSGeo.MapGuide.ObjectModels
         /// </summary>
         /// <param name="color">The HTML representation of the color</param>
         /// <returns>The .Net color structure that matches the color</returns>
-        public static Color ParseHTMLColorRGBA(string color)
+        public static ColorInfo ParseHTMLColorRGBA(string color)
         {
             if (color.Length == 8)
             {
-                int r = int.Parse(color.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
-                int g = int.Parse(color.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
-                int b = int.Parse(color.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
-                int a = int.Parse(color.Substring(6, 2), System.Globalization.NumberStyles.HexNumber);
+                var r = byte.Parse(color.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
+                var g = byte.Parse(color.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
+                var b = byte.Parse(color.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
+                var a = byte.Parse(color.Substring(6, 2), System.Globalization.NumberStyles.HexNumber);
 
-                return Color.FromArgb(a, r, g, b);
+                return ColorInfo.FromArgb(a, r, g, b);
             }
             else if (color.Length == 6)
             {
-                int r = int.Parse(color.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
-                int g = int.Parse(color.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
-                int b = int.Parse(color.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
+                var r = byte.Parse(color.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
+                var g = byte.Parse(color.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
+                var b = byte.Parse(color.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
 
-                return Color.FromArgb(r, g, b);
+                return ColorInfo.FromArgb(r, g, b);
             }
             else
                 throw new Exception(string.Format(Strings.ErrorBadHtmlColor, color));
@@ -97,24 +96,24 @@ namespace OSGeo.MapGuide.ObjectModels
         /// </summary>
         /// <param name="color">The HTML representation of the color</param>
         /// <returns>The .Net color structure that matches the color</returns>
-        public static Color ParseHTMLColorARGB(string color)
+        public static ColorInfo ParseHTMLColorARGB(string color)
         {
             if (color.Length == 8)
             {
-                int a = int.Parse(color.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
-                int r = int.Parse(color.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
-                int g = int.Parse(color.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
-                int b = int.Parse(color.Substring(6, 2), System.Globalization.NumberStyles.HexNumber);
+                var a = byte.Parse(color.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
+                var r = byte.Parse(color.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
+                var g = byte.Parse(color.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
+                var b = byte.Parse(color.Substring(6, 2), System.Globalization.NumberStyles.HexNumber);
 
-                return Color.FromArgb(a, r, g, b);
+                return ColorInfo.FromArgb(a, r, g, b);
             }
             else if (color.Length == 6)
             {
-                int r = int.Parse(color.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
-                int g = int.Parse(color.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
-                int b = int.Parse(color.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
+                var r = byte.Parse(color.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
+                var g = byte.Parse(color.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
+                var b = byte.Parse(color.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
 
-                return Color.FromArgb(r, g, b);
+                return ColorInfo.FromArgb(r, g, b);
             }
             else
                 throw new Exception(string.Format(Strings.ErrorBadHtmlColor, color));
@@ -126,7 +125,7 @@ namespace OSGeo.MapGuide.ObjectModels
         /// <param name="color">The color to encode</param>
         /// <param name="includeAlpha">A flag indicating if the color structures alpha value should be included</param>
         /// <returns>The HTML representation of the color structure</returns>
-        public static string SerializeHTMLColor(Color color, bool includeAlpha)
+        public static string SerializeHTMLColor(ColorInfo color, bool includeAlpha)
         {
             string res = string.Empty;
             if (includeAlpha)
@@ -143,7 +142,7 @@ namespace OSGeo.MapGuide.ObjectModels
         /// <param name="color">The color to encode</param>
         /// <param name="includeAlpha">A flag indicating if the color structures alpha value should be included</param>
         /// <returns>The HTML representation of the color structure</returns>
-        public static string SerializeHTMLColorRGBA(Color color, bool includeAlpha)
+        public static string SerializeHTMLColorRGBA(ColorInfo color, bool includeAlpha)
         {
             string res = string.Empty;
             res += color.R.ToString("x02"); //NOXLATE
@@ -160,7 +159,7 @@ namespace OSGeo.MapGuide.ObjectModels
         /// <param name="color">The color to encode</param>
         /// <param name="includeAlpha">A flag indicating if the color structures alpha value should be included</param>
         /// <returns>The HTML representation of the color structure</returns>
-        public static string SerializeHTMLColorARGB(Color color, bool includeAlpha)
+        public static string SerializeHTMLColorARGB(ColorInfo color, bool includeAlpha)
         {
             string res = string.Empty;
             if (includeAlpha)
@@ -286,16 +285,16 @@ namespace OSGeo.MapGuide.ObjectModels
         /// </summary>
         /// <param name="values"></param>
         /// <returns></returns>
-        public static string ToConnectionString(NameValueCollection values)
+        public static string ToConnectionString(IDictionary<string, string> values)
         {
             List<string> tokens = new List<string>();
 
-            foreach (string name in values.Keys)
+            foreach (var kvp in values)
             {
-                string value = values[name];
+                string value = kvp.Value;
                 if (value.Contains(";")) //NOXLATE
                     value = "\"" + value + "\""; //NOXLATE
-                tokens.Add(name + "=" + value); //NOXLATE
+                tokens.Add($"{kvp.Key}={value}"); //NOXLATE
             }
 
             return string.Join(";", tokens.ToArray()); //NOXLATE
@@ -311,7 +310,8 @@ namespace OSGeo.MapGuide.ObjectModels
         {
             using (var ms = new MemoryStream())
             {
-                using (var xw = new Utf8XmlWriter(ms))
+                //using (var xw = new Utf8XmlWriter(ms))
+                using (var xw = XmlWriter.Create(ms))
                 {
                     serializer.Serialize(xw, o);
                     using (var ms2 = RemoveUTF8BOM(ms))

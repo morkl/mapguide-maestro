@@ -44,7 +44,7 @@ namespace Maestro.Base.Commands.SiteExplorer
 
         private object BackgroundCheckResources(BackgroundWorker worker, DoWorkEventArgs e, params object[] args)
         {
-            var documents = new List<string>();
+            var documents = new System.Collections.Generic.List<string>();
             foreach (object a in args)
             {
                 string rid = a.ToString();
@@ -68,7 +68,7 @@ namespace Maestro.Base.Commands.SiteExplorer
                 }
             }
 
-            var items = new List<string>();
+            var items = new System.Collections.Generic.List<string>();
             var test = new MockServerConnection() { SiteVersion = _checkVersion };
             var caps = new TestCapabilities(test);
 
@@ -175,7 +175,7 @@ namespace Maestro.Base.Commands.SiteExplorer
             get { throw new NotImplementedException(); }
         }
 
-        public System.Collections.Specialized.NameValueCollection CloneParameters
+        public IDictionary<string, string> CloneParameters
         {
             get { throw new NotImplementedException(); }
         }

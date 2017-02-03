@@ -82,7 +82,7 @@ namespace Maestro.Editors.Common
         {
             get
             {
-                var items = new List<ResourceDataListResourceData>();
+                var items = new System.Collections.Generic.List<ResourceDataListResourceData>();
                 foreach (ListViewItem selItem in lstDataFiles.SelectedItems)
                 {
                     items.Add(selItem.Tag as ResourceDataListResourceData);
@@ -150,7 +150,7 @@ namespace Maestro.Editors.Common
         private void LoadResourceData()
         {
             var list = _edSvc.CurrentConnection.ResourceService.EnumerateResourceData(_edSvc.EditedResourceID);
-            _data = list.ResourceData;
+            _data = list.ResourceData.AsBindingList();
 
             BindResourceList();
         }

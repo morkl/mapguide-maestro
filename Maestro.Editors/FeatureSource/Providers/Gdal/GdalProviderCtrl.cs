@@ -69,7 +69,7 @@ namespace Maestro.Editors.FeatureSource.Providers.Gdal
                             cmbResamplingMethod.Visible =
                                 cmbResamplingMethod.Enabled = true;
 
-                        cmbResamplingMethod.DataSource = new List<string>(prop.Value);
+                        cmbResamplingMethod.DataSource = new System.Collections.Generic.List<string>(prop.Value);
                         var method = _fs.GetConnectionProperty("ResamplingMethod"); //NOXLATE
                         if (!string.IsNullOrEmpty(method))
                         {
